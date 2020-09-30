@@ -12,13 +12,8 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :word_count %>
-    <%= form.number_field :word_count %>
-  </div>
-
-  <div class="field">
     <%= form.label :text %>
-    <%= form.text_area :text %>
+    <%= form.text_field :text, value: '', autofocus: true %>
   </div>
 
   <div class="actions">

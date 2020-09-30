@@ -32,10 +32,12 @@ class SessionsController < ApplicationController
   def create
     @session = Session.new session_params
 
+    @session.word_count = @session.text.split.size
+
     respond_to do |format|
       if @session.save
-        format.html { redirect_to @session, notice: 'Session was successfully created.' }
-        format.json { render :show, status: :created, location: @session }
+        format.html { redirect_to edit_session_path(@session.id), notice: 'Session was successfully created.' }
+        format.json { render :edit, status: :created, location: @session }
       else
         format.html { render :new }
         format.json { render json: @session.errors, status: :unprocessable_entity }
@@ -46,9 +48,11 @@ class SessionsController < ApplicationController
   # PATCH/PUT /sessions/1
   # PATCH/PUT /sessions/1.json
   def update
+    text = @session.text + '\n' + session_params[:text]
+
     respond_to do |format|
-      if @session.update(session_params)
-        format.html { redirect_to @session, notice: 'Session was successfully updated.' }
+      if @session.update(text: text)
+        format.html { render :edit, notice: 'Session was successfully updated.' }
         format.json { render :show, status: :ok, location: @session }
       else
         format.html { render :edit }
@@ -86,7 +90,7 @@ class SessionsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def session_params
-    params.require(:session).permit(:word_count, :text)
+    params.require(:session).permit(:text)
   end
 
   def word_count_per_day
