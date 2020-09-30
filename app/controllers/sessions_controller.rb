@@ -32,7 +32,7 @@ class SessionsController < ApplicationController
   def create
     @session = Session.new session_params
 
-    @session.word_count = @session.text.split.size
+    @session.word_count = get_word_count @session.text
 
     respond_to do |format|
       if @session.save
@@ -49,9 +49,10 @@ class SessionsController < ApplicationController
   # PATCH/PUT /sessions/1.json
   def update
     text = @session.text + '\n' + session_params[:text]
+    word_count = get_word_count text
 
     respond_to do |format|
-      if @session.update(text: text)
+      if @session.update(text: text, word_count: word_count)
         format.html { render :edit, notice: 'Session was successfully updated.' }
         format.json { render :show, status: :ok, location: @session }
       else
@@ -82,6 +83,10 @@ class SessionsController < ApplicationController
   end
 
   private
+
+  def get_word_count(text)
+    text.gsub(/\\n/, ' ').split.size
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_session
