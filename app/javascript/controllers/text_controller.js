@@ -1,16 +1,16 @@
 import { Controller } from "stimulus";
-import $ from "jquery";
 
 export default class extends Controller {
     static targets = [ "text", "overlay" ];
 
     connect() {
         console.log('scroll to bottom');
+        const {textTarget} = this;
 
         const scrollToBottom = this.element.getAttribute('data-scroll-to-bottom') === "true";
 
         if(scrollToBottom) {
-            this.element.scrollTop = this.element.scrollHeight;
+            textTarget.scrollTop = textTarget.scrollHeight;
         }
     }
 

@@ -30,7 +30,10 @@ class SessionsController < ApplicationController
   # POST /sessions
   # POST /sessions.json
   def create
-    @session = Session.new session_params
+    params = session_params
+    params[:text] = "<div>#{params[:text]}</div>"
+
+    @session = Session.new params
 
     @session.word_count = get_word_count @session.text
 
@@ -48,7 +51,7 @@ class SessionsController < ApplicationController
   # PATCH/PUT /sessions/1
   # PATCH/PUT /sessions/1.json
   def update
-    text = @session.text + '\n' + session_params[:text]
+    text = @session.text + "<div>#{session_params[:text]}</div>"
     word_count = get_word_count text
 
     respond_to do |format|
@@ -85,7 +88,7 @@ class SessionsController < ApplicationController
   private
 
   def get_word_count(text)
-    text.gsub(/\\n/, ' ').split.size
+    text.gsub(/\\n/, ' ').gsub('<div>', ' ').gsub('</div>', ' ').split.size
   end
 
   # Use callbacks to share common setup or constraints between actions.
