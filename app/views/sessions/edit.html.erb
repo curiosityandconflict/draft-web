@@ -1,8 +1,6 @@
 <h1>Editing Session</h1>
 
-<div>
-  <%= @session.text %>
-</div>
+<%= render 'text', text: @session.text, scrollToBottom: true, enableCopy: false %>
 
 <%= render 'form', session: @session %>
 

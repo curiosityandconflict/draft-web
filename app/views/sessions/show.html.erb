@@ -7,7 +7,7 @@
 
 <p>
   <strong>Text:</strong>
-  <%= @session.text %>
+  <%= render 'text', text: @session.text, scrollToBottom: false, enableCopy: true %>
 </p>
 
 <%= link_to 'Edit', edit_session_path(@session) %> |

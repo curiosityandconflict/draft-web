@@ -1,0 +1,11 @@
+<div class='text-container'
+     data-controller='text'
+     data-target="text.container"
+     data-scroll-to-bottom="<%= scrollToBottom %>"
+     data-enable-copy="<%= enableCopy %>"
+>
+  <div class="text" data-target="text.text" data-action="click->text#copy">
+    <%= h(text).gsub(/\\n/, '<br/>').html_safe %>
+  </div>
+  <div class="overlay" data-target="text.overlay"><h1>Copied!</h1></div>
+</div>

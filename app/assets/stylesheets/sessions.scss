@@ -1,3 +1,63 @@
 // Place all the styles related to the Sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+body {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  .text-container {
+    height: 400px;
+    position: relative;
+
+    .text {
+      display: flex;
+      max-width: 500px;
+      max-height: 400px;
+      overflow: auto;
+    }
+
+    .overlay {
+      user-select: none;
+      background: rgba(200,200,200, 0.8);
+      opacity: 0;
+      z-index: -1;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all ease-out 0.2s;
+
+      h1 {
+        color: rgba(0,0,0,0.6);
+      }
+    }
+  }
+
+  form {
+    margin-top: 10px;
+    //display: flex;
+    .field {
+      textarea {
+        width: 500px;
+        height: 100px;
+        background: lightgray;
+        border: none;
+        border-radius: 5px;
+        resize: none;
+        padding: 10px;
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+}
