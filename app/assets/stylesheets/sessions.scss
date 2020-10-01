@@ -10,6 +10,8 @@ body {
 
   .text-container {
     height: 400px;
+    max-width: 500px;
+    text-align: left;
     position: relative;
 
     .text {
@@ -46,9 +48,10 @@ body {
     //display: flex;
     .field {
       textarea {
+        text-align: left;
         width: 500px;
         height: 100px;
-        background: lightgray;
+        background: #EFEFEF;
         border: none;
         border-radius: 5px;
         resize: none;
