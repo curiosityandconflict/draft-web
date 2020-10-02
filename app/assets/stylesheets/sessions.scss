@@ -7,6 +7,7 @@ body {
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  margin: 0;
 
   .text-container {
     height: 300px;
@@ -50,7 +51,6 @@ body {
 
   form {
     margin-top: 10px;
-    //display: flex;
     .field {
       textarea {
         text-align: left;
@@ -67,5 +67,72 @@ body {
         }
       }
     }
+  }
+
+  .index {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .edit-page {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .header {
+      height: 30px;
+      width: 100%;
+      text-align: center;
+
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      user-select: none;
+
+      .title {
+        margin-top: 0;
+        color: gray;
+        flex: 1;
+        font-size: 14px;
+        line-height: 30px;
+      }
+
+      .header-action {
+        color: gray;
+        border: 1px solid gray;
+        background: none;
+        border-radius: 5px;
+        padding: 5px 10px;
+        font-weight: bold;
+        font-size: 12px;
+        box-sizing: border-box;
+        text-decoration: none;
+        margin-right: 5px;
+
+        &:hover {
+          color: black;
+          background: lightgray;
+        }
+      }
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .compose-container {
+        display: flex;
+        justify-content: center;
+
+        .compose-form {
+
+        }
+      }
+    }
+
   }
 }
