@@ -8,9 +8,7 @@
   </div>
   <div class="container">
 
-    <div class="text-container">
-      <%= render 'text', text: @session.text, scrollToBottom: true, enableCopy: false %>
-    </div>
+    <%= render 'text', text: @session.text, scrollToBottom: true, enableCopy: false %>
 
     <div class="compose-container">
       <%= render 'form', session: @session %>
