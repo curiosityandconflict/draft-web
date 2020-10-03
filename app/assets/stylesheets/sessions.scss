@@ -136,7 +136,7 @@ body {
       min-width: 500px;
 
 
-      @media (max-width: $tablet) {
+      @media only screen and (max-width: $tablet) {
         min-width: auto;
         width: 100%;
         padding: 10px;
@@ -144,6 +144,10 @@ body {
 
       .text-container {
         flex: 0.7;
+
+        .text {
+          padding: 0 10px;
+        }
       }
 
       .compose-container {
