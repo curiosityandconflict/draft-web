@@ -13,7 +13,7 @@
 
   <div class="field" data-controller='compose' data-session-update-url="<%= session_path(session.id) %>">
 
-    <div class="word-count" data-target="compose.count"><%= @session.word_count %></div>
+    <div class="word-count" data-original-count="<%= session.word_count %>" data-target="compose.count"><%= session.word_count %></div>
 
     <%#= form.label :text %>
     <%= form.text_area :text,

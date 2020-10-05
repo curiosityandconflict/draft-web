@@ -6,8 +6,12 @@ export default class extends Controller {
 
     submit(event) {
         if(event.key === " " || event.keyCode === 32){
-            console.log($(this.countTarget).text());
-            console.log(parseInt($(this.countTarget).text()))
+            const $count = $(this.countTarget);
+
+            const originalCount = parseInt($count.data('original-count'));
+            const inProgress = this.textTarget.value.split(/\s+/).length;
+
+            $count.text(`${originalCount + inProgress}`);
         }
 
         if(event.key === "Enter" || event.keyCode === 13){
