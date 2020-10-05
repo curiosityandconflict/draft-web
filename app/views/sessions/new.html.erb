@@ -1,5 +1,19 @@
-<h1>New Session</h1>
+<div class="new-page">
+  <div class="header">
+    <h3 class="title">New Session</h3>
+    <div class="header-actions">
 
-<%= render 'form', session: @session %>
+      <%= link_to 'Cancel', sessions_path, class: 'header-action' %>
+    </div>
+  </div>
 
-<%= link_to 'Back', sessions_path %>
+  <div class="container">
+    <%= render 'text', text: @session.text, scrollToBottom: true, enableCopy: false %>
+
+    <div class="compose-container">
+      <%= render 'form', session: @session %>
+    </div>
+
+  </div>
+</div>
+

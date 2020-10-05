@@ -21,7 +21,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
       post sessions_url, params: { session: { text: @session.text, word_count: @session.word_count } }
     end
 
-    assert_redirected_to session_url(Session.last)
+    assert_redirected_to edit_session_url(Session.last)
   end
 
   test "should show session" do
@@ -36,7 +36,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
 
   test "should update session" do
     patch session_url(@session), params: { session: { text: @session.text, word_count: @session.word_count } }
-    assert_redirected_to session_url(@session)
+    assert_response :success
   end
 
   test "should destroy session" do

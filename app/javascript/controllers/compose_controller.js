@@ -20,9 +20,13 @@ export default class extends Controller {
             const {textTarget} = this;
 
             if( textTarget.value === "") return;
-            // $(document).find(event.target).closest('form').submit();
 
-            $(document).find('.text-container .text').append(`<div>${textTarget.value}</div>`)
+            console.log($(this.element).data('update'));
+            if( $(this.element).data('update') === false){
+                $(document).find(event.target).closest('form').submit();
+            }
+
+            $(document).find('.text-container .text').append(`<div>${textTarget.value}</div>`);
 
             //TODO: submit
             let formData = new FormData();
