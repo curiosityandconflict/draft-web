@@ -8,11 +8,14 @@
   </div>
   <div class="container">
 
-    <%= render 'text', text: @session.text, scrollToBottom: true, enableCopy: false %>
 
-    <div class="compose-container">
-      <%= render 'form', session: @session %>
-    </div>
+    <%#= render partial: 'text', locals: {text: @session.text, scrollToBottom: true, enableCopy: false} %>
+
+<!--    <div class="compose-container">-->
+      <%#= render 'form', session: @session %>
+<!--    </div>-->
+
+    <%= render partial: 'compose', locals: {session: @session} %>
 
 
   </div>

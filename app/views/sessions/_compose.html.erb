@@ -1,0 +1,45 @@
+<div class="compose"
+     data-controller='compose'
+     data-update='<%= session.id.present? %>'
+     data-session-update-url="<%= session.id.present? ? session_path(session.id) : new_session_path %>">
+
+  <div class='text-container'>
+    <div class="text" data-target="compose.textView">
+      <%= session.text.present? ? session.text.html_safe : '' %>
+    </div>
+  </div>
+
+  <div class="compose-container">
+    <%= form_with(model: session, class: 'compose-form', data: {target: 'compose.form'}) do |form| %>
+      <% if session.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(session.errors.count, "error") %> prohibited this session from being saved:</h2>
+
+          <ul>
+            <% session.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="field">
+
+        <div class="word-count" data-original-count="<%= session.word_count %>" data-target="compose.count"><%= session.word_count %></div>
+
+        <%#= form.label :text %>
+        <%= form.text_area :text,
+                           value: '',
+                           autofocus: true,
+                           id: 'composer',
+                           resize: false,
+                           data: {
+                               target: 'compose.text',
+                               action: 'keypress->compose#submit'
+                           }
+
+        %>
+      </div>
+    <% end %>
+  </div>
+</div>

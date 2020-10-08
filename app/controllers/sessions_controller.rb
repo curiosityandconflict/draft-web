@@ -57,7 +57,7 @@ class SessionsController < ApplicationController
     respond_to do |format|
       if @session.update(text: text, word_count: word_count)
         format.html { render :edit, notice: 'Session was successfully updated.' }
-        format.json { render :show, status: :ok, location: @session }
+        format.json { render json: @session, status: :ok }
       else
         format.html { render :edit }
         format.json { render json: @session.errors, status: :unprocessable_entity }

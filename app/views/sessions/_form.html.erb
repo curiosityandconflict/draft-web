@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-  <div class="field" data-controller='compose' data-update='<%= session.id.present? %>' data-session-update-url="<%= session.id.present? ? session_path(session.id) : new_session_path %>">
+  <div class="field" data-update='<%= session.id.present? %>' data-session-update-url="<%= session.id.present? ? session_path(session.id) : new_session_path %>">
 
     <div class="word-count" data-original-count="<%= session.word_count %>" data-target="compose.count"><%= session.word_count %></div>
 
