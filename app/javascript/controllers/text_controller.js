@@ -3,21 +3,7 @@ import { Controller } from "stimulus";
 export default class extends Controller {
     static targets = [ "text", "overlay" ];
 
-    connect() {
-        console.log('scroll to bottom');
-        const {textTarget} = this;
-
-        const scrollToBottom = this.element.getAttribute('data-scroll-to-bottom') === "true";
-
-        if(scrollToBottom) {
-            textTarget.scrollTop = textTarget.scrollHeight;
-        }
-    }
-
     copy() {
-        const enableCopy = this.element.getAttribute('data-enable-copy') === 'true';
-        if(!enableCopy) return;
-
         let range = document.createRange();
         range.selectNode(this.textTarget);
         window.getSelection()?.removeAllRanges();

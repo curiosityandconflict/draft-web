@@ -26,6 +26,10 @@ body {
       max-width: 500px;
       max-height: 400px;
       overflow: auto;
+
+      div {
+        margin-bottom: 10px;
+      }
     }
 
     .overlay {
@@ -72,12 +76,61 @@ body {
     }
   }
 
-  .index {
+  .sessions-page {
     display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
     flex-direction: column;
+    margin: 0 10px;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    .new-session-link {
+      border: 2px solid black;
+      color: black;
+      font-weight: bold;
+
+      border-radius: 5px;
+      width: 200px;
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: all 0.2s;
+
+      &:hover, &:active {
+        text-decoration: none;
+
+        color: black;
+        background-color: lightgray;
+      }
+    }
+
+    .sessions-table {
+
+      thead {
+        tr {
+          th {
+            text-align: left;
+            white-space: nowrap;
+          }
+        }
+      }
+
+      .text-column {
+        max-height: 50px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
   }
 
-  .edit-page, .new-page {
+  .edit-page, .new-page, .show-page {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -163,16 +216,34 @@ body {
         }
       }
 
-      .compose-container {
-        display: flex;
-        justify-content: center;
+      .compose {
         width: 100%;
+        max-width: 600px;
 
-        .compose-form {
+        .compose-container {
+          display: flex;
+          justify-content: center;
+          width: 100%;
 
+          .compose-form {
+
+          }
         }
       }
     }
 
+
+
+  }
+
+  .show-page {
+    .container {
+      justify-content: flex-start;
+    }
+
+    .text-container {
+      width: 100%;
+      max-width: 600px;
+    }
   }
 }

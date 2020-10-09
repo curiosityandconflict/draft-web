@@ -1,8 +1,6 @@
 <div class='text-container'
      data-controller='text'
      data-target="text.container"
-     data-scroll-to-bottom="<%= scrollToBottom %>"
-     data-enable-copy="<%= enableCopy %>"
 >
   <div class="text" data-target="text.text" data-action="click->text#copy">
     <%= text.present? ? text.html_safe : '' %>

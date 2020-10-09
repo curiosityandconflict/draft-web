@@ -1,14 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Word count:</strong>
-  <%= @session.word_count %>
-</p>
+<div class="show-page">
+  <div class="header">
+    <h3 class="title">Viewing Session</h3>
+    <div class="header-actions">
+      <%= link_to 'Edit', edit_session_path(@session), class: 'header-action' %>
+      <%= link_to 'Back', sessions_path, class: 'header-action' %>
+    </div>
+  </div>
+  <div class="container">
+    <%= render 'text', text: @session.text %>
 
-<p>
-  <strong>Text:</strong>
-  <%= render 'text', text: @session.text, scrollToBottom: false, enableCopy: true %>
-</p>
+    <p>
+      <strong>Word count:</strong>
+      <%= @session.word_count %>
+    </p>
+  </div>
 
-<%= link_to 'Edit', edit_session_path(@session) %> |
-<%= link_to 'Back', sessions_path %>
+</div>
