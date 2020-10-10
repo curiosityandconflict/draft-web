@@ -1,37 +1,13 @@
-<div class="sessions-page">
-
+<div class="index-page page">
   <p id="notice"><%= notice %></p>
 
-  <h1>Sessions</h1>
-
-
-  <%= link_to 'New Session', new_session_path, class: 'new-session-link' %>
-
-
-  <div>
-    Word Count Total: <%= @word_count_total %>
+  <div class="container columns">
+    <div>
+      <%= image_tag('logo.png', size: '150') %>
+      <div>by Curiosity & Conflict</div>
+    </div>
+    <div>
+      <%= link_to 'New Session', new_session_path, class: 'new-session-link' %>
+    </div>
   </div>
-
-  <table class="sessions-table">
-    <thead>
-    <tr>
-      <th>Text</th>
-      <th>Word count</th>
-      <th colspan="3"></th>
-    </tr>
-    </thead>
-
-    <tbody>
-
-    <% @sessions.each do |session| %>
-      <tr>
-        <td><div class="text-column"><%= render partial: 'text', locals:{ text: session.text } %></div></td>
-        <td><%= session.word_count %></td>
-        <td><%= link_to 'Show', session %></td>
-        <td><%= link_to 'Edit', edit_session_path(session) %></td>
-        <td><%= link_to 'Destroy', session, method: :delete, data: {confirm: 'Are you sure?'} %></td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
 </div>

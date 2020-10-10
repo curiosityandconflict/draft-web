@@ -2,7 +2,16 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-$tablet: 770px;
+@import "../variables";
+@import "../mixins";
+
+#notice {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+}
 
 body {
   display: flex;
@@ -10,6 +19,60 @@ body {
   flex-direction: column;
   align-items: center;
   margin: 0;
+
+  .page {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    margin: 0 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    .header {
+      height: 30px;
+      width: 100%;
+      text-align: center;
+
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      user-select: none;
+
+      .title {
+        margin-top: 0;
+        color: gray;
+        flex: 1;
+        font-size: 14px;
+        line-height: 30px;
+      }
+
+      .header-action {
+        color: gray;
+        border: 1px solid gray;
+        background: none;
+        border-radius: 5px;
+        padding: 5px 10px;
+        font-weight: bold;
+        font-size: 12px;
+        box-sizing: border-box;
+        text-decoration: none;
+        margin-right: 5px;
+
+        &:hover {
+          color: black;
+          background: lightgray;
+        }
+      }
+    }
+
+    .container {
+      @include container;
+    }
+  }
 
   .text-container {
     width: 100%;
@@ -26,6 +89,7 @@ body {
       max-width: 500px;
       max-height: 400px;
       overflow: auto;
+      box-sizing: border-box;
 
       div {
         margin-bottom: 10px;
@@ -77,39 +141,6 @@ body {
   }
 
   .sessions-page {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-direction: column;
-    margin: 0 10px;
-
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-
-    .new-session-link {
-      border: 2px solid black;
-      color: black;
-      font-weight: bold;
-
-      border-radius: 5px;
-      width: 200px;
-      height: 140px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      transition: all 0.2s;
-
-      &:hover, &:active {
-        text-decoration: none;
-
-        color: black;
-        background-color: lightgray;
-      }
-    }
 
     .sessions-table {
 
@@ -131,69 +162,8 @@ body {
   }
 
   .edit-page, .new-page, .show-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin: 0 10px;
-
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-
-    .header {
-      height: 30px;
-      width: 100%;
-      text-align: center;
-
-      display: flex;
-      align-items: start;
-      justify-content: space-between;
-      user-select: none;
-
-      .title {
-        margin-top: 0;
-        color: gray;
-        flex: 1;
-        font-size: 14px;
-        line-height: 30px;
-      }
-
-      .header-action {
-        color: gray;
-        border: 1px solid gray;
-        background: none;
-        border-radius: 5px;
-        padding: 5px 10px;
-        font-weight: bold;
-        font-size: 12px;
-        box-sizing: border-box;
-        text-decoration: none;
-        margin-right: 5px;
-
-        &:hover {
-          color: black;
-          background: lightgray;
-        }
-      }
-    }
 
     .container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      flex: 1;
-      min-width: 500px;
-
-
-      @media only screen and (max-width: $tablet) {
-        min-width: auto;
-        width: 100%;
-        padding: 10px;
-      }
 
       .word-count {
         color: lightgray;
@@ -236,14 +206,5 @@ body {
 
   }
 
-  .show-page {
-    .container {
-      justify-content: flex-start;
-    }
 
-    .text-container {
-      width: 100%;
-      max-width: 600px;
-    }
-  }
 }

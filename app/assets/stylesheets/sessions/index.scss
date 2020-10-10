@@ -1,0 +1,38 @@
+@import "../variables";
+@import "../mixins";
+
+.index-page {
+
+  .container.columns {
+    @include container;
+
+    flex-direction: column;
+    justify-content: space-around;
+
+    @media only screen and (min-width: $mobile){
+      flex-direction: row;
+    }
+  }
+
+  .new-session-link {
+    border: 2px solid black;
+    color: black;
+    font-weight: bold;
+
+    border-radius: 5px;
+    width: 200px;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.2s;
+
+    &:hover, &:active {
+      text-decoration: none;
+
+      color: black;
+      background-color: lightgray;
+    }
+  }
+}

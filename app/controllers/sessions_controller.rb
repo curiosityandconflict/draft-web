@@ -75,6 +75,8 @@ class SessionsController < ApplicationController
     end
   end
 
+  # GET /sessions/word_count
+  # GET /sessions/word_count.json
   def word_count
     sum = 0
     word_count_per_day.each { |x| sum += x.total_words }
@@ -83,6 +85,16 @@ class SessionsController < ApplicationController
     respond_to do |format|
       format.json { render json: { word_count: sum }, status: :ok }
     end
+  end
+
+  # GET /sessions/archive
+  # GET /sessions/archive.json
+  def archive
+    @sessions = Session.all
+
+    sum = 0
+    word_count_per_day.each { |x| sum += x.total_words }
+    @word_count_total = sum
   end
 
   private
