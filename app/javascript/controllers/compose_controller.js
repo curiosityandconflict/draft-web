@@ -15,17 +15,19 @@ export default class extends Controller {
         textViewTarget.scrollTop = textViewTarget.scrollHeight;
     }
 
+
+
     submit(event) {
         const {element, textTarget, countTarget} = this;
 
-        if(event.key === " " || event.keyCode === 32){
+        // if(event.key === " " || event.keyCode === 32){
             const $count = $(countTarget);
 
             const originalCount = parseInt($count.data('original-count'));
             const inProgress = textTarget.value.split(/\s+/).length;
 
             $count.text(`${originalCount + inProgress}`);
-        }
+        // }
 
         if(event.key === "Enter" || event.keyCode === 13){
             event.preventDefault();

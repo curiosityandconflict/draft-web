@@ -25,7 +25,7 @@
 
       <div class="field">
 
-        <div class="word-count" data-original-count="<%= session.word_count %>" data-target="compose.count"><%= session.word_count %></div>
+        <div class="word-count" data-original-count="<%= session.word_count || 0 %>" data-target="compose.count"><%= session.word_count || 0 %></div>
 
         <%#= form.label :text %>
         <%= form.text_area :text,

@@ -166,12 +166,12 @@ body {
     .container {
 
       .word-count {
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
         color: lightgray;
         font-size: 14px;
         padding-left: 30px;
-        width: 100%;
-        box-sizing: border-box;
-        text-align: right;
 
         &:hover {
           color: gray;
