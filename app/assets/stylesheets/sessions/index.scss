@@ -12,9 +12,15 @@
     @media only screen and (min-width: $mobile){
       flex-direction: row;
     }
+
+    .by-text {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
-  .new-session-link {
+  .new-session-link, .session-archive-link {
     border: 2px solid black;
     color: black;
     font-weight: bold;
@@ -34,5 +40,11 @@
       color: black;
       background-color: lightgray;
     }
+  }
+
+  .session-archive-link {
+    height: 40px;
+    margin-top: 20px;
+    opacity: 0.2;
   }
 }

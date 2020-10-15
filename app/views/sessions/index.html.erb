@@ -2,10 +2,11 @@
   <div class="container columns">
     <div>
       <%= image_tag('logo.png', size: '150') %>
-      <div>by Curiosity & Conflict</div>
+      <small class="by-text">by Curiosity & Conflict</small>
     </div>
     <div>
       <%= link_to 'New Session', new_session_path, class: 'new-session-link' %>
+      <%= link_to 'View Archive', archive_sessions_path, class: 'session-archive-link' %>
     </div>
   </div>
 </div>

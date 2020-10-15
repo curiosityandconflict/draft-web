@@ -1,7 +1,6 @@
 // Place all the styles related to the Sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-
 @import "../variables";
 @import "../mixins";
 
@@ -13,197 +12,168 @@
   height: 30px;
 }
 
-body {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  margin: 0;
 
-  .page {
+.page {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  margin: 0 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+  .header {
+    height: 30px;
+    width: 100%;
+    text-align: center;
+
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
+    align-items: start;
+    justify-content: space-between;
+    user-select: none;
+
+    .title {
+      margin-top: 0;
+      color: gray;
+      flex: 1;
+      font-size: 14px;
+      line-height: 30px;
+    }
+
+    .header-action {
+      color: gray;
+      border: 1px solid gray;
+      background: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+      font-weight: bold;
+      font-size: 12px;
+      box-sizing: border-box;
+      text-decoration: none;
+      margin-right: 5px;
+
+      &:hover {
+        color: black;
+        background: lightgray;
+      }
+    }
+  }
+
+  //.container {
+  //  @include container;
+  //}
+}
+
+.text-container {
+  width: 100%;
+  text-align: left;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+
+  .text {
+    width: 100%;
+    display: flex;
     flex-direction: column;
-    margin: 0 10px;
+    max-width: 500px;
+    max-height: 400px;
+    overflow: auto;
+    box-sizing: border-box;
+
+    div {
+      margin-bottom: 10px;
+    }
+  }
+
+  .overlay {
+    user-select: none;
+    background: rgba(200, 200, 200, 0.8);
+    opacity: 0;
+    z-index: -1;
     position: absolute;
     top: 0;
     left: 0;
-    bottom: 0;
     right: 0;
+    bottom: 0;
 
-    .header {
-      height: 30px;
-      width: 100%;
-      text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all ease-out 0.2s;
 
-      display: flex;
-      align-items: start;
-      justify-content: space-between;
-      user-select: none;
-
-      .title {
-        margin-top: 0;
-        color: gray;
-        flex: 1;
-        font-size: 14px;
-        line-height: 30px;
-      }
-
-      .header-action {
-        color: gray;
-        border: 1px solid gray;
-        background: none;
-        border-radius: 5px;
-        padding: 5px 10px;
-        font-weight: bold;
-        font-size: 12px;
-        box-sizing: border-box;
-        text-decoration: none;
-        margin-right: 5px;
-
-        &:hover {
-          color: black;
-          background: lightgray;
-        }
-      }
-    }
-
-    .container {
-      @include container;
+    h1 {
+      color: rgba(0, 0, 0, 0.6);
     }
   }
+}
 
-  .text-container {
-    width: 100%;
-    text-align: left;
-    position: relative;
-    display: flex;
-    justify-content: flex-end;
-    flex-direction: column;
+form.compose-form {
+  margin-top: 10px;
+  width: 100%;
 
-    .text {
+  .field {
+    textarea {
+      text-align: left;
       width: 100%;
-      display: flex;
-      flex-direction: column;
-      max-width: 500px;
-      max-height: 400px;
-      overflow: auto;
+      height: 100px;
+      background: #EFEFEF;
+      border: none;
+      border-radius: 5px;
+      resize: none;
+      padding: 10px;
       box-sizing: border-box;
 
-      div {
-        margin-bottom: 10px;
+      &:focus {
+        outline: none;
       }
     }
+  }
+}
 
-    .overlay {
-      user-select: none;
-      background: rgba(200,200,200, 0.8);
-      opacity: 0;
-      z-index: -1;
+.edit-page, .new-page, .show-page {
+
+  .container {
+    @include container;
+
+    .word-count {
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      bottom: 5px;
+      right: 5px;
+      color: lightgray;
+      font-size: 14px;
+      padding-left: 30px;
 
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: all ease-out 0.2s;
-
-      h1 {
-        color: rgba(0,0,0,0.6);
+      &:hover {
+        color: gray;
       }
     }
-  }
 
-  form.compose-form {
-    margin-top: 10px;
-    width: 100%;
-    .field {
-      textarea {
-        text-align: left;
+    .text-container {
+      flex: 0.7;
+
+      .text {
+        padding: 0 10px;
+      }
+    }
+
+    .compose {
+      width: 100%;
+      max-width: 600px;
+
+      .compose-container {
+        display: flex;
+        justify-content: center;
         width: 100%;
-        height: 100px;
-        background: #EFEFEF;
-        border: none;
-        border-radius: 5px;
-        resize: none;
-        padding: 10px;
-        box-sizing: border-box;
 
-        &:focus {
-          outline: none;
+        .compose-form {
+
         }
       }
     }
-  }
-
-  .sessions-page {
-
-    .sessions-table {
-
-      thead {
-        tr {
-          th {
-            text-align: left;
-            white-space: nowrap;
-          }
-        }
-      }
-
-      .text-column {
-        max-height: 50px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-    }
-  }
-
-  .edit-page, .new-page, .show-page {
-
-    .container {
-
-      .word-count {
-        position: absolute;
-        bottom: 5px;
-        right: 5px;
-        color: lightgray;
-        font-size: 14px;
-        padding-left: 30px;
-
-        &:hover {
-          color: gray;
-        }
-      }
-
-      .text-container {
-        flex: 0.7;
-
-        .text {
-          padding: 0 10px;
-        }
-      }
-
-      .compose {
-        width: 100%;
-        max-width: 600px;
-
-        .compose-container {
-          display: flex;
-          justify-content: center;
-          width: 100%;
-
-          .compose-form {
-
-          }
-        }
-      }
-    }
-
-
-
   }
 
 

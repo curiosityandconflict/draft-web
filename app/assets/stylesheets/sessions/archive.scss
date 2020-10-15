@@ -1,0 +1,30 @@
+@import "../variables";
+@import "../mixins";
+
+.archive-page {
+  .container {
+    @include container;
+
+    justify-content: flex-start;
+
+    .sessions-table {
+
+      thead {
+        tr {
+          th {
+            text-align: left;
+            white-space: nowrap;
+          }
+        }
+      }
+
+      .text-column {
+        max-height: 50px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+
+
+}
