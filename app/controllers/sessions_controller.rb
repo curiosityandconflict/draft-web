@@ -6,11 +6,6 @@ class SessionsController < ApplicationController
   # GET /sessions
   # GET /sessions.json
   def index
-    @sessions = Session.all
-
-    sum = 0
-    word_count_per_day.each { |x| sum += x.total_words }
-    @word_count_total = sum
   end
 
   # GET /sessions/1
@@ -90,7 +85,7 @@ class SessionsController < ApplicationController
   # GET /sessions/archive
   # GET /sessions/archive.json
   def archive
-    @sessions = Session.all
+    @sessions = Session.all.order(updated_at: :desc)
 
     sum = 0
     word_count_per_day.each { |x| sum += x.total_words }
