@@ -1,60 +1,60 @@
 @font-face {
     font-family: 'Roboto';
-    src: url(RobotoThin.ttf) format('truetype');
+    src: url(/fonts/RobotoThin.ttf) format('truetype');
     font-weight: 100;
 }
 @font-face {
     font-family: 'Roboto';
-    src: url(RobotoThinItalic.ttf) format('truetype');
+    src: url(/fonts/RobotoThinItalic.ttf) format('truetype');
     font-weight: 100;
     font-style: italic;
 }
 @font-face {
     font-family: 'Roboto';
-    src: url(RobotoLight.ttf) format('truetype');
+    src: url(/fonts/RobotoLight.ttf) format('truetype');
     font-weight: 300;
 }
 @font-face {
     font-family: 'Roboto';
-    src: url(RobotoLightItalic.ttf) format('truetype');
+    src: url(/fonts/RobotoLightItalic.ttf) format('truetype');
     font-weight: 300;
     font-style: italic;
 }
 @font-face {
     font-family: 'Roboto';
-    src: url(RobotoRegular.ttf) format('truetype');
+    src: url(/fonts/RobotoRegular.ttf) format('truetype');
     font-weight: 400;
 }
 @font-face {
     font-family: 'Roboto';
-    src: url(RobotoMedium.ttf) format('truetype');
+    src: url(/fonts/RobotoMedium.ttf) format('truetype');
     font-weight: 500;
 }
 @font-face {
     font-family: 'Roboto';
-    src: url(RobotoMediumItalic.ttf) format('truetype');
+    src: url(/fonts/RobotoMediumItalic.ttf) format('truetype');
     font-weight: 500;
     font-style: italic;
 }
 @font-face {
     font-family: 'Roboto';
-    src: url(RobotoBold.ttf) format('truetype');
+    src: url(/fonts/RobotoBold.ttf) format('truetype');
     font-weight: 700;
 }
 @font-face {
     font-family: 'Roboto';
-    src: url(RobotoBoldItalic.ttf) format('truetype');
+    src: url(/fonts/RobotoBoldItalic.ttf) format('truetype');
     font-weight: 700;
     font-style: italic;
 }
 @font-face {
     font-family: 'Roboto';
-    src: url(RobotoBlack.ttf) format('truetype');
+    src: url(/fonts/RobotoBlack.ttf) format('truetype');
     font-weight: 900;
 }
 @font-face {
     font-family: 'Roboto';
-    src: url(RobotoBlackItalic.ttf) format('truetype');
+    src: url(/fonts/RobotoBlackItalic.ttf) format('truetype');
     font-weight: 900;
     font-style: italic;
 }
