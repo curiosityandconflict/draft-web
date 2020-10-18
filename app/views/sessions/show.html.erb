@@ -3,7 +3,7 @@
     <h3 class="title">Viewing Session</h3>
     <div class="header-actions">
       <%= link_to 'Edit', edit_session_path(@session), class: 'header-action' %>
-      <%= link_to 'Back', sessions_path, class: 'header-action' %>
+      <%= link_to 'Back', sessions_path, class: 'header-action', data: { 'turbolinks-action': 'restore' } %>
     </div>
   </div>
   <div class="container">

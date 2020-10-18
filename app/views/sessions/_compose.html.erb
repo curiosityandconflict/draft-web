@@ -1,7 +1,7 @@
 <div class="compose"
      data-controller='compose'
      data-update='<%= session.id.present? %>'
-     data-session-update-url="<%= session.id.present? ? session_path(session.id) : new_session_path %>">
+     data-session-update-url="<%= session.id.present? ? session_path(session.id) : sessions_path %>">
 
   <div class='text-container'>
     <div class="text" data-target="compose.textView">
