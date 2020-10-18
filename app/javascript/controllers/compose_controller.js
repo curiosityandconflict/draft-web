@@ -51,15 +51,13 @@ export default class extends Controller {
             textTarget.value = '';
 
             const url = $(this.element).data('session-update-url');
-            if(url.includes('new')){
-
-            }
+            const update = $(this.element).data('update');
 
             Rails.ajax({
                 url: `${$(this.element).data('session-update-url')}${url.includes('edit') ? '.json' : ''}`,
                 datatype: 'script',
                 data: formData,
-                type: `${url.includes('edit') ? 'put' : 'post'}`,
+                type: `${update ? 'put' : 'post'}`,
                 success: (data) => {
                     console.log('data:' + data);
                     $(this.countTarget).text(data.word_count).data('original-count', data.word_count)

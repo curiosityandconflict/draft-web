@@ -1,6 +1,6 @@
 <div class="compose"
      data-controller='compose'
-     data-update='<%= session.id.present? %>'
+     data-update=<%= session.id.present? %>
      data-session-update-url="<%= session.id.present? ? session_path(session.id) : sessions_path %>">
 
   <div class='text-container'>
