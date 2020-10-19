@@ -25,6 +25,8 @@
       &.light {display: none;}
       &.dark {display: block;}
     }
+
+    transition: ease all 1s;
   }
 
   @media (prefers-color-scheme: light) {
@@ -32,6 +34,8 @@
       &.light {display: block;}
       &.dark {display: none;}
     }
+
+    transition: ease all 1s;
   }
 
   .new-session-link, .session-archive-link {
@@ -71,6 +75,6 @@
   .session-archive-link {
     height: 40px;
     margin-top: 20px;
-    opacity: 0.2;
+    opacity: 0.4;
   }
 }
