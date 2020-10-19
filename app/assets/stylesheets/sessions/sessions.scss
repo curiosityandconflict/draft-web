@@ -133,6 +133,15 @@ form.compose-form {
         outline: none;
       }
     }
+
+    @media (prefers-color-scheme: dark) {
+      textarea {
+        background: #202020;
+        color: lightgray;
+
+      }
+
+    }
   }
 }
 

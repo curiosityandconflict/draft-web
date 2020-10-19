@@ -20,6 +20,20 @@
     }
   }
 
+  @media (prefers-color-scheme: dark) {
+    .logo {
+      &.light {display: none;}
+      &.dark {display: block;}
+    }
+  }
+
+  @media (prefers-color-scheme: light) {
+    .logo {
+      &.light {display: block;}
+      &.dark {display: none;}
+    }
+  }
+
   .new-session-link, .session-archive-link {
     border: 2px solid black;
     color: black;
@@ -39,6 +53,18 @@
 
       color: black;
       background-color: lightgray;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .new-session-link, .session-archive-link {
+      border-color: lightgray;
+      color: lightgray;
+
+      &:hover, &:active {
+        color: white;
+        background-color: #202020;
+      }
     }
   }
 

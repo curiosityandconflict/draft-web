@@ -8,3 +8,22 @@ body {
   align-items: center;
   margin: 0;
 }
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: black;
+    color: lightgray;
+  }
+
+  a {
+    color: lightgray;
+    text-decoration: none;
+    &:hover {
+      color: white;
+    }
+  }
+
+  h1,h2,h3,h4 {
+    color: lightgray;
+  }
+}
