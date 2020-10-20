@@ -1,0 +1,55 @@
+@import '../variables';
+@import '../mixins';
+
+.edit-page {
+  .container {
+    @include container;
+
+    .word-count {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      color: lightgray;
+      font-size: 14px;
+      padding-left: 30px;
+
+      &:hover {
+        color: gray;
+      }
+    }
+
+    .text-container {
+      flex: 0.7;
+
+      .text {
+        padding: 0 10px;
+      }
+    }
+
+    .compose {
+      width: 100%;
+      max-width: 600px;
+
+
+      @media screen and (max-width: $mobile) {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        height: 500px;
+      }
+
+      .compose-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+
+        form.compose-form {
+          @include compose-form;
+        }
+      }
+    }
+  }
+
+
+}

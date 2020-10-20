@@ -56,7 +56,7 @@ export default class extends Controller {
             const update = $(this.element).data('update');
 
             Rails.ajax({
-                url: `${$(this.element).data('session-update-url')}`,
+                url: `${$(this.element).data('session-update-url')}${update ? '.json' : ''}`,
                 datatype: 'script',
                 data: formData,
                 type: `${update ? 'put' : 'post'}`,
