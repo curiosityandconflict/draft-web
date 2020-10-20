@@ -23,8 +23,10 @@ export default class extends Controller {
         // if(event.key === " " || event.keyCode === 32){
             const $count = $(countTarget);
 
-            const originalCount = parseInt($count.data('original-count'));
+            const originalCount = parseInt(countTarget.getAttribute('data-original-count'));
             const inProgress = textTarget.value.split(/\s+/).length;
+
+            console.log(`originalCount: ${originalCount} + ${inProgress}`);
 
             $count.text(`${originalCount + inProgress}`);
         // }
@@ -54,13 +56,14 @@ export default class extends Controller {
             const update = $(this.element).data('update');
 
             Rails.ajax({
-                url: `${$(this.element).data('session-update-url')}${url.includes('edit') ? '.json' : ''}`,
+                url: `${$(this.element).data('session-update-url')}`,
                 datatype: 'script',
                 data: formData,
                 type: `${update ? 'put' : 'post'}`,
                 success: (data) => {
-                    console.log('data:' + data);
-                    $(this.countTarget).text(data.word_count).data('original-count', data.word_count)
+                    const { word_count } = data;
+                    $(countTarget).text(word_count);
+                    countTarget.setAttribute('data-original-count', word_count);
                 },
                 error: (error) => {
                     console.log('ERROR:'+error)

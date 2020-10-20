@@ -9,6 +9,14 @@ body {
   margin: 0;
 }
 
+a {
+  color: black;
+  text-decoration: none;
+  &:hover {
+    color: #202020;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   //transition: all 1s;
 
