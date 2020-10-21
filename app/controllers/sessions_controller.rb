@@ -11,15 +11,18 @@ class SessionsController < ApplicationController
   # GET /sessions/1
   # GET /sessions/1.json
   def show
+    @title = 'Show'
   end
 
   # GET /sessions/new
   def new
+    @title = 'Compose'
     @session = Session.new
   end
 
   # GET /sessions/1/edit
   def edit
+    @title = 'Compose'
   end
 
   # POST /sessions
@@ -85,6 +88,7 @@ class SessionsController < ApplicationController
   # GET /sessions/archive
   # GET /sessions/archive.json
   def archive
+    @title = 'Archive'
     @sessions = Session.all.order(updated_at: :desc)
 
     sum = 0

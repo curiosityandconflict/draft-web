@@ -1,7 +1,7 @@
 @import '../variables';
 @import '../mixins';
 
-.edit-page {
+.edit-page, .new-page {
   .container {
     @include container;
 
@@ -36,7 +36,6 @@
         bottom: 0;
         right: 0;
         left: 0;
-        height: 500px;
       }
 
       .compose-container {

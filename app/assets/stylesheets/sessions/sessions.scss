@@ -111,23 +111,11 @@
   }
 }
 
-.new-page, .show-page {
+.show-page {
 
   .container {
     @include container;
 
-    .word-count {
-      position: absolute;
-      bottom: 5px;
-      right: 5px;
-      color: lightgray;
-      font-size: 14px;
-      padding-left: 30px;
-
-      &:hover {
-        color: gray;
-      }
-    }
 
     .text-container {
       flex: 0.7;
@@ -137,20 +125,6 @@
       }
     }
 
-    .compose {
-      width: 100%;
-      max-width: 600px;
-
-      .compose-container {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-
-        .compose-form {
-          @include compose-form;
-        }
-      }
-    }
   }
 
 
