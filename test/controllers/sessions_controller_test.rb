@@ -44,7 +44,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
       delete session_url(@session)
     end
 
-    assert_redirected_to sessions_url
+    assert_redirected_to archive_sessions_url
   end
 
   test "should get word count" do
