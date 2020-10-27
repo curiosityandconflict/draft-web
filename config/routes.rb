@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :sessions do
     get :word_count, path: 'word_count', on: :collection
     get :archive, path: 'archive', on: :collection
+    get :header_actions, path: ':id/header_actions', on: :collection
   end
 
   root to: 'sessions#index'

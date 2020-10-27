@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   protect_from_forgery with: :exception, if: Proc.new { |c| c.request.format != 'application/json' }
   protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
-  before_action :set_session, only: [:show, :edit, :update, :destroy]
+  before_action :set_session, only: [:show, :edit, :update, :destroy, :header_actions]
 
   # GET /sessions
   # GET /sessions.json
@@ -32,13 +32,12 @@ class SessionsController < ApplicationController
     params[:text] = "<div>#{params[:text]}</div>"
 
     @session = Session.new params
-
     @session.word_count = get_word_count @session.text
 
     respond_to do |format|
       if @session.save
         format.html { redirect_to edit_session_path(@session.id), notice: 'Session was successfully created.' }
-        format.json { render :edit, status: :created, location: @session }
+        format.json { render json: @session, status: :ok }
       else
         format.html { render :new }
         format.json { render json: @session.errors, status: :unprocessable_entity }
@@ -94,6 +93,18 @@ class SessionsController < ApplicationController
     sum = 0
     word_count_per_day.each { |x| sum += x.total_words }
     @word_count_total = sum
+  end
+
+  # GET /sessions/1/headerActions
+  # GET /sessions/1/headerActions.json
+  def header_actions
+    if params[:id]
+      @session = Session.find(params[:id])
+    else
+      @session = Session.new
+    end
+
+    render partial: 'sessions/headerActions'
   end
 
   private
