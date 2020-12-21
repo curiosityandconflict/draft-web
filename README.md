@@ -5,5 +5,6 @@
 
 ## Up and Running
 * from the project folder, run `bundle install`
+* and `yarn install`
 * then run `rail s`
 * go to `localhost:3000` in your browser
