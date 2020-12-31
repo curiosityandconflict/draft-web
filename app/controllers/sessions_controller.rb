@@ -80,6 +80,7 @@ class SessionsController < ApplicationController
     @word_count_total = sum
 
     respond_to do |format|
+      format.html { render :word_count}
       format.json { render json: { word_count: sum }, status: :ok }
     end
   end

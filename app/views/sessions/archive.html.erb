@@ -8,9 +8,9 @@
 
   <div class="container">
 
-    <div>
-      Word Count Total: <%= @word_count_total %>
-    </div>
+    <turbo-frame id="word_count_tray" src="/sessions/word_count">
+      loading...
+    </turbo-frame>
 
     <div class="sessions-table-container">
       <table class="sessions-table">
