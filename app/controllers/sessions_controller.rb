@@ -36,7 +36,7 @@ class SessionsController < ApplicationController
 
     respond_to do |format|
       if @session.save
-        format.html { redirect_to edit_session_path(@session.id), notice: 'Session was successfully created.' }
+        format.html { render :edit, notice: 'Session was successfully created.' }
         format.json { render json: @session, status: :ok }
       else
         format.html { render :new }

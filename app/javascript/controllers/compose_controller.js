@@ -52,47 +52,50 @@ export default class extends Controller {
         if (event.key === "Enter" || event.keyCode === 13) {
             event.preventDefault();
 
-            if (textTarget.value === "") return;
-
-            console.log($(element).data('update'));
-            if ($(element).data('update') === false) {
-                $(document).find(event.target).closest('form').submit();
+            if (textTarget.value === ""){
+                return;
             }
 
-            $(document).find('.text-container .text').append(`<div>${textTarget.value}</div>`);
+            $(element).find('.submit-button').click()
+            // $(element).find('form').trigger('submit');
 
-            this.scrollToBottom();
+            // $(document).find(event.target).closest('form').submit();
 
-            let formData = new FormData();
-            formData.append("session[text]", textTarget.value);
-            textTarget.value = '';
-            const url = `${this.form_url}.json`;
 
-            Rails.ajax({
-                url: url,
-                datatype: 'script',
-                data: formData,
-                type: `${this.update ? 'PUT' : 'POST'}`,
-                success: (data) => {
-                    const {word_count, id, text} = data;
-                    $(countTarget).text(word_count);
-                    countTarget.setAttribute('data-original-count', word_count);
+            // $(document).find('.text-container .text').append(`<div>${textTarget.value}</div>`);
 
-                    //update form route
-                    if(!this.update){
-                        this.getHeaderActions(id);
-                    }
-                    this.form_url = `/sessions/${id}`;
-                    //switch to put instead of post
-                    this.update = true;
-                    //push new route into browser
-                    window.history.pushState({},'',`/sessions/${id}/edit`)
-
-                },
-                error: (error) => {
-                    console.log('ERROR:' + error)
-                }
-            })
+            // this.scrollToBottom();
+            //
+            // let formData = new FormData();
+            // formData.append("session[text]", textTarget.value);
+            // textTarget.value = '';
+            // const url = `${this.form_url}`;
+            //
+            // Rails.ajax({
+            //     url: url,
+            //     datatype: 'script',
+            //     data: formData,
+            //     type: `${this.update ? 'PUT' : 'POST'}`,
+            //     // success: (data) => {
+            //     //     const {word_count, id, text} = data;
+            //     //     $(countTarget).text(word_count);
+            //     //     countTarget.setAttribute('data-original-count', word_count);
+            //     //
+            //     //     //update form route
+            //     //     if(!this.update){
+            //     //         this.getHeaderActions(id);
+            //     //     }
+            //     //     this.form_url = `/sessions/${id}`;
+            //     //     //switch to put instead of post
+            //     //     this.update = true;
+            //     //     //push new route into browser
+            //     //     window.history.pushState({},'',`/sessions/${id}/edit`)
+            //     //
+            //     // },
+            //     // error: (error) => {
+            //     //     console.log('ERROR:' + error)
+            //     // }
+            // })
         }
     }
 }
