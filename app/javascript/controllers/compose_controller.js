@@ -40,6 +40,14 @@ export default class extends Controller {
 
     }
 
+    submitted(event) {
+        const {textTarget} = this;
+        console.log(event);
+        if(event.detail?.success){
+            textTarget.value = '';
+        }
+    }
+
     submit(event) {
         const {element, textTarget, countTarget} = this;
 

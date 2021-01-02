@@ -18,6 +18,16 @@ class SessionsController < ApplicationController
   def new
     @title = 'Compose'
     @session = Session.new
+
+    respond_to do |format|
+      if @session.save
+        format.html { redirect_to edit_session_path(@session.id), notice: 'Session was successfully created.' }
+        format.json { render json: @session, status: :ok }
+      else
+        format.html { render :new }
+        format.json { render json: @session.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # GET /sessions/1/edit
@@ -48,7 +58,7 @@ class SessionsController < ApplicationController
   # PATCH/PUT /sessions/1
   # PATCH/PUT /sessions/1.json
   def update
-    text = @session.text + "<div>#{session_params[:text]}</div>"
+    text = @session.text ? @session.text + "<div>#{session_params[:text]}</div>" : "<div>#{session_params[:text]}</div>"
     word_count = get_word_count text
 
     respond_to do |format|
