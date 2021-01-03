@@ -4,15 +4,15 @@
      data-action="turbo:submit-end->compose#submitted"
      data-session-update-url="<%= session.id.present? ? session_path(session.id) : sessions_path %>"
 >
-<!--  <turbo-frame id="header_tray">-->
-    <div class="header">
-      <h3 class="title">Write</h3>
-      <div class="header-actions" data-target="compose.headerActions">
-        <%= render partial: 'headerActions' %>
-      </div>
+  <div class="header">
+    <h3 class="title">Write</h3>
+    <div class="header-actions" data-target="compose.headerActions">
+      <turbo-frame id="header_actions_tray" src="/sessions/<%=session.id%>/header-actions" target="_top">
+        <%#= render partial: 'headerActions' %>
+      </turbo-frame>
     </div>
+  </div>
 
-<!--  </turbo-frame>-->
   <div class="container">
 
 

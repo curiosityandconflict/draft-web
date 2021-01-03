@@ -106,8 +106,8 @@ class SessionsController < ApplicationController
     @word_count_total = sum
   end
 
-  # GET /sessions/1/headerActions
-  # GET /sessions/1/headerActions.json
+  # GET /sessions/1/header-actions
+  # GET /sessions/1/header-actions.json
   def header_actions
     if params[:id]
       @session = Session.find(params[:id])

@@ -26,7 +26,7 @@ export default class extends Controller {
         const {headerActionsTarget} = this;
 
         Rails.ajax({
-            url: `/sessions/${id}/header_actions`,
+            url: `/sessions/${id}/header-actions`,
             datatype: 'script',
             type: `GET`,
             success: (data) => {
