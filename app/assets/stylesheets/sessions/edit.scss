@@ -18,34 +18,47 @@
       }
     }
 
-    .text-container {
-      flex: 0.7;
+    .text-view {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      width: 100%;
 
-      .text {
-        padding: 0 10px;
+      .text-container {
+        max-width: 600px;
+
+        .text {
+          padding: 0 10px;
+        }
       }
     }
 
-    .compose {
+  }
+
+  .compose {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    [type=submit] {display: none;}
+
+
+    @media screen and (max-width: $mobile) {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      left: 0;
+    }
+
+    .compose-container {
+      display: flex;
+      justify-content: center;
       width: 100%;
       max-width: 600px;
 
-
-      @media screen and (max-width: $mobile) {
-        position: fixed;
-        bottom: 0;
-        right: 0;
-        left: 0;
-      }
-
-      .compose-container {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-
-        form.compose-form {
-          @include compose-form;
-        }
+      form.compose-form {
+        @include compose-form;
       }
     }
   }

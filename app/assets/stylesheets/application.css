@@ -18,3 +18,12 @@ body {
     font-family: Roboto, sans-serif;
     font-size: 14px;
 }
+
+turbo-frame {
+    display: inherit;
+    justify-content: inherit;
+    align-items: inherit;
+    height: inherit;
+    width: inherit;
+    flex-direction: inherit;
+}

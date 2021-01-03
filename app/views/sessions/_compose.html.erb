@@ -4,62 +4,57 @@
      data-action="turbo:submit-end->compose#submitted"
      data-session-update-url="<%= session.id.present? ? session_path(session.id) : sessions_path %>"
 >
-  <div class="header">
-    <h3 class="title">Write</h3>
-    <div class="header-actions" data-target="compose.headerActions">
-      <turbo-frame id="header_actions_tray" src="/sessions/<%=session.id%>/header-actions" target="_top">
-        <%#= render partial: 'headerActions' %>
-      </turbo-frame>
-    </div>
-  </div>
-
   <div class="container">
-
-
-    <div class="compose">
-      <turbo-frame id="text_container_tray">
-        <div class='text-container'>
-          <div class="text" data-target="compose.textView">
-            <%= session.text.present? ? session.text.html_safe : '' %>
-          </div>
+    <turbo-frame id="container_tray">
+      <div class="header">
+        <h3 class="title">Write</h3>
+        <div class="header-actions" data-target="compose.headerActions">
+          <turbo-frame id="header_actions_tray" src="/sessions/<%= session.id %>/header-actions" target="_top"></turbo-frame>
         </div>
-        <div class="word-count" data-original-count="<%= session.word_count || 0 %>" data-target="compose.count"><%= session.word_count || 0 %></div>
-      </turbo-frame>
+      </div>
 
-      <div class="compose-container">
-        <%= form_with(model: session, class: 'compose-form', data: {target: 'compose.form', 'turbo-frame': 'text_container_tray'}) do |form| %>
-          <% if session.errors.any? %>
-            <div id="error_explanation">
-              <h2><%= pluralize(session.errors.count, "error") %> prohibited this session from being saved:</h2>
-
-              <ul>
-                <% session.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-                <% end %>
-              </ul>
+      <div class="text-view">
+        <turbo-frame id="text_container_tray">
+          <div class='text-container'>
+            <div class="text" data-target="compose.textView">
+              <%= session.text.present? ? session.text.html_safe : '' %>
             </div>
-          <% end %>
+          </div>
+          <div class="word-count" data-original-count="<%= session.word_count || 0 %>" data-target="compose.count"><%= session.word_count || 0 %></div>
+        </turbo-frame>
+      </div>
+    </turbo-frame>
+  </div>
+  <div class="compose">
+    <div class="compose-container">
+      <%= form_with(model: session, class: 'compose-form', data: {target: 'compose.form', 'turbo-frame': 'container_tray'}) do |form| %>
+        <% if session.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(session.errors.count, "error") %> prohibited this session from being saved:</h2>
 
-          <div class="field">
-
-            <!--            <div class="word-count" data-original-count="<%#= session.word_count || 0 %>" data-target="compose.count"><%#= session.word_count || 0 %></div>-->
-
-            <%#= form.label :text %>
-            <%= form.text_area :text,
-                               value: '',
-                               autofocus: true,
-                               id: 'composer',
-                               resize: false,
-                               data: {
-                                   target: 'compose.text',
-                                   action: 'keypress->compose#submit'
-                               }
-
-            %>
-            <input type='submit' class="submit-button" value="submit"/>
+            <ul>
+              <% session.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
           </div>
         <% end %>
-      </div>
+
+        <div class="field">
+          <%= form.text_area :text,
+                             value: '',
+                             autofocus: true,
+                             id: 'composer',
+                             resize: false,
+                             data: {
+                                 target: 'compose.text',
+                                 action: 'keypress->compose#submit'
+                             }
+
+          %>
+          <input type='submit' class="submit-button" value="submit"/>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
