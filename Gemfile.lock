@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/ffi/ffi.git
+  revision: 1d379db5e8815b45c3aced9838d06fae22b084d5
+  specs:
+    ffi (1.15.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -80,7 +86,6 @@ GEM
       http_parser.rb (~> 0.6.0)
     erubi (1.9.0)
     eventmachine (1.2.7)
-    ffi (1.13.1)
     formatador (0.2.5)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -238,6 +243,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
+  ffi!
   guard
   guard-livereload (~> 2.5)
   jbuilder (~> 2.7)
