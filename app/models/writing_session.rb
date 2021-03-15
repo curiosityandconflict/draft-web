@@ -1,0 +1,2 @@
+class WritingSession < ApplicationRecord
+end

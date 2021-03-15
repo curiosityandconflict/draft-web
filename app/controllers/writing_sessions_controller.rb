@@ -1,4 +1,4 @@
-class SessionsController < ApplicationController
+class WritingSessionsController < ApplicationController
   protect_from_forgery with: :exception, if: Proc.new { |c| c.request.format != 'application/json' }
   protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
   before_action :set_session, only: [:show, :edit, :update, :destroy, :header_actions]
@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
   # GET /sessions/new
   def new
     @title = 'Compose'
-    @session = Session.new
+    @session = WritingSession.new
   end
 
   # GET /sessions/1/edit
@@ -31,12 +31,12 @@ class SessionsController < ApplicationController
     params = session_params
     params[:text] = "<div>#{params[:text]}</div>"
 
-    @session = Session.new params
+    @session = WritingSession.new params
     @session.word_count = get_word_count @session.text
 
     respond_to do |format|
       if @session.save
-        format.html { redirect_to edit_session_path(@session.id), notice: 'Session was successfully created.' }
+        format.html { redirect_to edit_writing_session_path(@session.id), notice: 'Session was successfully created.' }
         format.json { render json: @session, status: :ok }
       else
         format.html { render :new }
@@ -67,7 +67,7 @@ class SessionsController < ApplicationController
   def destroy
     @session.destroy
     respond_to do |format|
-      format.html { redirect_to archive_sessions_url, notice: 'Session was successfully destroyed.' }
+      format.html { redirect_to archive_writing_sessions_url, notice: 'Session was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -88,7 +88,7 @@ class SessionsController < ApplicationController
   # GET /sessions/archive.json
   def archive
     @title = 'Archive'
-    @sessions = Session.all.order(updated_at: :desc)
+    @sessions = WritingSession.all.order(updated_at: :desc)
 
     sum = 0
     word_count_per_day.each { |x| sum += x.total_words }
@@ -99,12 +99,12 @@ class SessionsController < ApplicationController
   # GET /sessions/1/headerActions.json
   def header_actions
     if params[:id]
-      @session = Session.find(params[:id])
+      @session = WritingSession.find(params[:id])
     else
-      @session = Session.new
+      @session = WritingSession.new
     end
 
-    render partial: 'sessions/headerActions'
+    render partial: 'writing_sessions/headerActions'
   end
 
   private
@@ -115,7 +115,7 @@ class SessionsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_session
-    @session = Session.find(params[:id])
+    @session = WritingSession.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
@@ -124,6 +124,6 @@ class SessionsController < ApplicationController
   end
 
   def word_count_per_day
-    Session.select('date(created_at) as session_date, sum(word_count) as total_words').group('date(created_at)')
+    WritingSession.select('date(created_at) as session_date, sum(word_count) as total_words').group('date(created_at)')
   end
 end
