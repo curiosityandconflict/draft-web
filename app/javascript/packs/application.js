@@ -17,3 +17,6 @@ require("channels")
 // const imagePath = (name) => images(name, true)
 
 import "controllers"
+import "../assets/stylesheets/application"
+
+global.toastr = require("toastr")
