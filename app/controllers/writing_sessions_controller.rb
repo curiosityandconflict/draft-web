@@ -3,35 +3,48 @@ class WritingSessionsController < ApplicationController
   protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
   before_action :set_session, only: [:show, :edit, :update, :destroy, :header_actions]
 
-  # GET /sessions
-  # GET /sessions.json
+  # GET /writing_sessions
+  # GET /writing_sessions.json
   def index
   end
 
-  # GET /sessions/1
-  # GET /sessions/1.json
+  # GET /writing_sessions/1
+  # GET /writing_sessions/1.json
   def show
+    unless can? :read, @session
+      redirect_to_home
+    end
+
     @title = 'Show'
   end
 
-  # GET /sessions/new
+  # GET /writing_sessions/new
   def new
     @title = 'Compose'
     @session = WritingSession.new
   end
 
-  # GET /sessions/1/edit
+  # GET /writing_sessions/1/edit
   def edit
+    unless can? :update, WritingSession
+      redirect_to_home
+    end
+
     @title = 'Compose'
   end
 
-  # POST /sessions
-  # POST /sessions.json
+  # POST /writing_sessions
+  # POST /writing_sessions.json
   def create
+    unless can? :create, WritingSession
+      redirect_to_home
+    end
+
     params = session_params
     params[:text] = "<div>#{params[:text]}</div>"
 
     @session = WritingSession.new params
+    @session.user_id = current_user.id
     @session.word_count = get_word_count @session.text
 
     respond_to do |format|
@@ -45,9 +58,13 @@ class WritingSessionsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /sessions/1
-  # PATCH/PUT /sessions/1.json
+  # PATCH/PUT /writing_sessions/1
+  # PATCH/PUT /writing_sessions/1.json
   def update
+    unless can? :update, @session
+      redirect_to_home
+    end
+
     text = @session.text + "<div>#{session_params[:text]}</div>"
     word_count = get_word_count text
 
@@ -62,9 +79,13 @@ class WritingSessionsController < ApplicationController
     end
   end
 
-  # DELETE /sessions/1
-  # DELETE /sessions/1.json
+  # DELETE /writing_sessions/1
+  # DELETE /writing_sessions/1.json
   def destroy
+    unless can? :destroy, @session
+      redirect_to_home
+    end
+
     @session.destroy
     respond_to do |format|
       format.html { redirect_to archive_writing_sessions_url, notice: 'Session was successfully destroyed.' }
@@ -72,8 +93,8 @@ class WritingSessionsController < ApplicationController
     end
   end
 
-  # GET /sessions/word_count
-  # GET /sessions/word_count.json
+  # GET /writing_sessions/word_count
+  # GET /writing_sessions/word_count.json
   def word_count
     sum = 0
     word_count_per_day.each { |x| sum += x.total_words }
@@ -84,19 +105,19 @@ class WritingSessionsController < ApplicationController
     end
   end
 
-  # GET /sessions/archive
-  # GET /sessions/archive.json
+  # GET /writing_sessions/archive
+  # GET /writing_sessions/archive.json
   def archive
     @title = 'Archive'
-    @sessions = WritingSession.all.order(updated_at: :desc)
+    @sessions = WritingSession.where(user_id: current_user.id).order(updated_at: :desc)
 
     sum = 0
     word_count_per_day.each { |x| sum += x.total_words }
     @word_count_total = sum
   end
 
-  # GET /sessions/1/headerActions
-  # GET /sessions/1/headerActions.json
+  # GET /writing_sessions/1/headerActions
+  # GET /writing_sessions/1/headerActions.json
   def header_actions
     if params[:id]
       @session = WritingSession.find(params[:id])
@@ -124,6 +145,13 @@ class WritingSessionsController < ApplicationController
   end
 
   def word_count_per_day
-    WritingSession.select('date(created_at) as session_date, sum(word_count) as total_words').group('date(created_at)')
+    WritingSession.where(user_id: current_user.id).select('date(created_at) as session_date, sum(word_count) as total_words').group('date(created_at)')
+  end
+
+  def redirect_to_home
+    respond_to do |format|
+        format.html { redirect_to root_path, error: 'Action failed. You do not have the apropriate access.' }
+        # format.json { render json: @session, status: :ok }
+    end
   end
 end

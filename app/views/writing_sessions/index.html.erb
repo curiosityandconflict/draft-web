@@ -1,4 +1,10 @@
 <div class="index-page page">
+  <div class="header">
+    <h3 class="title"></h3>
+    <div class="header-actions">
+      <%= link_to 'Logout', destroy_user_session_path, method: 'DELETE', class: 'header-action', data: {'turbolinks-action': 'restore'} %>
+    </div>
+  </div>
   <div class="container columns">
     <div>
       <%= image_tag('LogoDark.png', size: '150', class: 'logo dark') %>
