@@ -7,6 +7,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   setup do
     sign_in users(:bob)
     @session = writing_sessions(:one)
+    
   end
 
   test "should get index" do
@@ -48,6 +49,17 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to archive_writing_sessions_url
+  end
+
+  test "should show sessions archive" do
+    get archive_writing_sessions_url
+    assert_response :success
+  end
+
+  test "should limit archive sessions to users" do
+    get archive_writing_sessions_url
+
+    assert_select "tbody tr", count: users(:bob).writing_sessions.count
   end
 
   test "should get word count" do
