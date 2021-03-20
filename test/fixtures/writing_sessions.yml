@@ -3,7 +3,9 @@
 one:
   word_count: 100
   text: MyText
+  user_id: 1
 
 two:
   word_count: 2
   text: My Text
+  user_id: 1

@@ -14,7 +14,7 @@
  *= require_self
  */
 
-@import 'toastr';
+/* @import 'toastr'; */
 
 body {
     font-family: Roboto, sans-serif;

@@ -2,8 +2,11 @@ require 'test_helper'
 require 'json'
 
 class SessionsControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
   setup do
-    @session = sessions(:one)
+    sign_in users(:bob)
+    @session = writing_sessions(:one)
   end
 
   test "should get index" do
@@ -48,7 +51,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get word count" do
-    get word_count_swriting_essions_url, xhr: true
+    get word_count_writing_sessions_url, xhr: true
 
     assert_response :ok
     assert_equal 102, JSON.parse(@response.body)["word_count"]
