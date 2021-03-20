@@ -71,6 +71,11 @@ def controller_test(resource)
   "test/controllers/#{resource}_controller_test.rb"
 end
 
+# Returns all tests for the given resource.
+def resource_tests(resource)
+  integration_tests(resource) << controller_test(resource)
+end
+
 guard 'livereload' do
   extensions = {
     css: :css,

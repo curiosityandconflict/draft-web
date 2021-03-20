@@ -26,7 +26,7 @@ class WritingSessionsController < ApplicationController
 
   # GET /writing_sessions/1/edit
   def edit
-    unless can? :update, WritingSession
+    unless can? :update, @session
       redirect_to_home
     end
 

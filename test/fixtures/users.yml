@@ -9,5 +9,15 @@ bob:
   email: test@email.com
   admin_role: false
 #
-two: {}
+
+jane: 
+  id: 2
+  email: jane@email.com
+  admin_role: false
+
+
+admin:
+  id: 3
+  email: admin@email.com
+  admin_role: true
 # column: value

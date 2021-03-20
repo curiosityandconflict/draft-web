@@ -1,7 +1,13 @@
 require 'test_helper'
 
 class HomeTest < ActionDispatch::IntegrationTest
-  test "links" do
+  include Devise::Test::IntegrationHelpers
+
+  setup do
+    sign_in users(:bob)
+  end
+
+  test "show main after sign in" do
     get root_path
 
     assert_template 'layouts/application'

@@ -55,6 +55,34 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :ok
     assert_equal 102, JSON.parse(@response.body)["word_count"]
-
   end
+
+  test "should protect viewing writing sessions from other users" do
+    sign_in users(:jane)
+
+    get writing_session_url(@session)
+    assert_redirected_to root_path
+  end
+
+  test "should protect edit writing sessions from other users" do
+    sign_in users(:jane)
+
+    get edit_writing_session_url(@session)
+    assert_redirected_to root_path
+  end
+
+  test "should allow admin to view writing sessions from other users" do
+    sign_in users(:admin)
+
+    get writing_session_url(@session)
+    assert_response :success
+  end
+
+  test "should allow admin to edit writing sessions from other users" do
+    sign_in users(:admin)
+
+    get edit_writing_session_url(@session)
+    assert_response :success
+  end
+
 end
