@@ -14,6 +14,45 @@
   }
 }
 
+@mixin container-columns {
+  .container.columns {
+    @include container;
+
+    flex-direction: column;
+    justify-content: space-around;
+
+    @media only screen and (min-width: $mobile){
+      flex-direction: row;
+    }
+
+    .by-text {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+@mixin logo-darkmode {
+  @media (prefers-color-scheme: dark) {
+    .logo {
+      &.light {display: none;}
+      &.dark {display: block;}
+    }
+
+    transition: ease all 1s;
+  }
+
+  @media (prefers-color-scheme: light) {
+    .logo {
+      &.light {display: block;}
+      &.dark {display: none;}
+    }
+
+    transition: ease all 1s;
+  }
+}
+
 @mixin compose-form {
   margin-top: 10px;
   width: 100%;

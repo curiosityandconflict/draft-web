@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title><%= @title || 'User Session' %></title>
+    <title><%= @title || 'Draft' %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" name="viewport" />
@@ -13,15 +13,27 @@
 
 <body>
     <% unless flash.empty? %>
-      <script type="text/javascript">
+    <script type="text/javascript">
         <% flash.each do |f| %>
           <% type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'info') %>
-          toastr['<%= type %>']('<%= f[1] %>');
-        <% end %>
-      </script>
+                toastr['<%= type %>']('<%= f[1] %>'); 
+                <% end %>
+    </script>
     <% end %>
 
-    <%= yield %>
+    <div class="user-index-page page">
+        <div class="container columns">
+            <div>
+                <%= image_tag('LogoDark.png', size: '150', class: 'logo dark') %>
+                <%= image_tag('LogoLight.png', size: '150', class: 'logo light') %>
+                <small class="by-text">by Curiosity & Conflict</small>
+            </div>
+            <div>
+                <%= yield %>
+            </div>
+        </div>
+    </div>
+    
 </body>
 
 </html>

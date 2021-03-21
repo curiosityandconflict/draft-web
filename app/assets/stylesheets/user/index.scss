@@ -1,0 +1,83 @@
+@import "../variables";
+@import "../mixins";
+
+.user-index-page {
+  @include container-columns;
+  @include logo-darkmode;
+
+  .container {
+    form {
+      width: 200px;
+      margin-bottom: 10px;
+
+      .field {
+        padding: 10px 0;
+
+        label {
+          padding-bottom: 2px;
+        }
+
+        input {
+          margin-top: 5px;
+          padding: 10px 15px;
+          border-radius: 3px;
+          outline-style: none;
+          background: transparent;
+          border: 1px solid white;
+          color: white;
+          width: 100%;
+          box-sizing: border-box;
+          opacity: 0.8;
+          transition: all 0.3s;
+
+          &[type="checkbox"] {
+            width: inherit;
+          }
+
+          &:focus,
+          &:hover {
+            opacity: 1;
+          }
+
+          @media (prefers-color-scheme: light) {
+            border: 1px solid black;
+            color: black;
+          }
+
+          @media (prefers-color-scheme: dark) {
+            border: 1px solid white;
+            color: white;
+          }
+        }
+      }
+
+      .actions {
+        input[type="submit"] {
+          width: 100%;
+          background: transparent;
+          border-radius: 3px;
+          padding: 5px 10px;
+          font-size: 16px;
+          opacity: 0.8;
+          transition: all 0.3s;
+
+          &:hover {
+              opacity: 1;
+          }
+
+          @media (prefers-color-scheme: light) {
+            border: 1px solid black;
+            color: white;
+            background: black;
+          }
+
+          @media (prefers-color-scheme: dark) {
+            border: 1px solid white;
+            color: black;
+            background: white;
+          }
+        }
+      }
+    }
+  }
+}
