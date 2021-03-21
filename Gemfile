@@ -20,6 +20,10 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+gem 'devise'
+gem 'rails_admin', '~> 2.0'
+gem 'cancancan'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -34,12 +38,14 @@ group :development, :test do
 end
 
 group :development do
+  gem 'solargraph'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'listen', '~> 3.2'
   gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'guard'
   gem 'guard-livereload', '~> 2.5', require: false
+  gem 'guard-minitest'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end

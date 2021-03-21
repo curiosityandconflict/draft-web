@@ -1,0 +1,6 @@
+<% if @session.new_record? %>
+  <%= link_to 'Cancel', writing_sessions_path, class: 'header-action', data: { 'turbolinks-action': 'restore' }  %>
+<% else %>
+  <%= link_to 'Show', @session, class: 'header-action', data: {'turbolinks-action': 'replace'} %>
+  <%= link_to 'Back', writing_sessions_path, class: 'header-action', data: {'turbolinks-action': 'restore'} %>
+<% end %>

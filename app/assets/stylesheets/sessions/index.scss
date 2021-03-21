@@ -2,41 +2,8 @@
 @import "../mixins";
 
 .index-page {
-
-  .container.columns {
-    @include container;
-
-    flex-direction: column;
-    justify-content: space-around;
-
-    @media only screen and (min-width: $mobile){
-      flex-direction: row;
-    }
-
-    .by-text {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .logo {
-      &.light {display: none;}
-      &.dark {display: block;}
-    }
-
-    transition: ease all 1s;
-  }
-
-  @media (prefers-color-scheme: light) {
-    .logo {
-      &.light {display: block;}
-      &.dark {display: none;}
-    }
-
-    transition: ease all 1s;
-  }
+  @include container-columns;
+  @include logo-darkmode;
 
   .new-session-link, .session-archive-link {
     border: 2px solid black;

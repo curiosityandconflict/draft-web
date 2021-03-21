@@ -26,7 +26,7 @@ export default class extends Controller {
         const {headerActionsTarget} = this;
 
         Rails.ajax({
-            url: `/sessions/${id}/header_actions`,
+            url: `/writing_sessions/${id}/header_actions`,
             datatype: 'script',
             type: `GET`,
             success: (data) => {
@@ -82,11 +82,11 @@ export default class extends Controller {
                     if(!this.update){
                         this.getHeaderActions(id);
                     }
-                    this.form_url = `/sessions/${id}`;
+                    this.form_url = `/writing_sessions/${id}`;
                     //switch to put instead of post
                     this.update = true;
                     //push new route into browser
-                    window.history.pushState({},'',`/sessions/${id}/edit`)
+                    window.history.pushState({},'',`/writing_sessions/${id}/edit`)
 
                 },
                 error: (error) => {

@@ -1,0 +1,16 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  word_count: 100
+  text: MyText
+  user_id: 1
+
+two:
+  word_count: 2
+  text: My Text
+  user_id: 1
+
+three:
+  word_count: 5
+  text: My five words are these
+  user_id: 2
