@@ -20,9 +20,10 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-gem 'devise'
+gem 'devise', '~> 4.7'
 gem 'rails_admin', '~> 2.0'
-gem 'cancancan'
+gem 'cancancan', '~> 3.2'
+gem 'mail', '~> 2.7'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

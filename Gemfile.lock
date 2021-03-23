@@ -341,14 +341,15 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
-  cancancan
+  cancancan (~> 3.2)
   capybara (>= 2.15)
-  devise
+  devise (~> 4.7)
   guard
   guard-livereload (~> 2.5)
   guard-minitest
   jbuilder (~> 2.7)
   listen (~> 3.2)
+  mail (~> 2.7)
   pg (= 1.2.3)
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.2)
