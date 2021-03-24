@@ -63,12 +63,12 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: ENV['SMTP_MAILER_ADDRESS'],
-    port: ENV['SMTP_MAILER_PORT'],
-    domain: ENV['SMTP_MAILER_DOMAIN'],
-    user_name: ENV['SMTP_MAILER_USERNAME'],
-    password: ENV['SMTP_MAILER_PASSWORD'],
-    authentication: 'plain',
+    user_name: Rails.application.credentials.mailer[:username],
+    password: Rails.application.credentials.mailer[:password],
+    address: Rails.application.credentials.mailer[:address],
+    domain: Rails.application.credentials.mailer[:domain],
+    port: Rails.application.credentials.mailer[:port],
+    authentication: Rails.application.credentials.mailer[:authentication],
     enable_starttls_auto: true
   }
 
