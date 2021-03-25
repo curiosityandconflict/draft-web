@@ -12,6 +12,11 @@
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
+  "scripts": {
+    "dev": "foreman start -f Procfile.dev",
+    "edit-credentials": "EDITOR='vim' rails credentials:edit",
+    "edit-credentials:dev": "EDITOR='vim' rails credentials:edit --environment development"
+  },
   "devDependencies": {
     "webpack-dev-server": "^3.11.0"
   }
