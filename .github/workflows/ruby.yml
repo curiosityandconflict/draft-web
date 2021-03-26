@@ -23,5 +23,7 @@ jobs:
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
       - name: Precompile assets
         run: bundle exec rails assets:precompile
+        env: # Or as an environment variable
+          RAILS_DEVELOPMENT_KEY: ${{ secrets.RAILS_DEVELOPMENT_KEY }}
       - name: Run tests
         run: bundle exec rake
