@@ -60,7 +60,7 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "web_production"
 
-  Rails.application.routes.default_url_options[:host] = 'draft.curiosityandconflict.com'
+  Rails.application.routes.default_url_options[:host] = 'app.write-draft.com'
 
   config.action_mailer.perform_caching = false
   config.action_mailer.delivery_method = :smtp
