@@ -10,27 +10,84 @@
     .sessions-table-container {
       height: 100%;
       overflow: auto;
-    }
+      padding: 0 5em;
 
-    .sessions-table {
-      overflow: auto;
+      .sessions-table {
+        overflow: auto;
 
-      thead {
-        tr {
-          th {
-            text-align: left;
-            white-space: nowrap;
+        dd {
+          margin-bottom: 2em;
+          display: flex;
+          border: 1px solid rgba(0, 0, 0, 0.4);
+          max-height: 200px;
+
+          @media (prefers-color-scheme: dark) {
+            border: 1px solid rgba(255, 255, 255, 0.4);
+          }
+
+          .content {
+            position: relative;
+            flex: 1 1;
+            overflow: hidden;
+
+            .text-column {
+              height: 100%;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              border: 1px solid rgba(0, 0, 0, 0.4);
+              padding: 1em;
+
+              @media (prefers-color-scheme: dark) {
+                border: 1px solid rgba(255, 255, 255, 0.4);
+                border-top: 0;
+                border-bottom: 0;
+              }
+
+              border-top: 0;
+              border-bottom: 0;
+
+              .text {
+                overflow: hidden;
+              }
+            }
+
+            .word-count {
+              position: absolute;
+              bottom: 1em;
+              right: 1em;
+              opacity: 0.6;
+            }
+          }
+
+          .actions {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+
+            .action-link {
+              height: 30px;
+              // flex: 1 1;
+              padding: 0.5em 1em;
+              // border: 1px solid rgba(255, 255, 255, 0.4);
+              justify-content: center;
+              align-items: center;
+              display: flex;
+              border-top: 0;
+              border-bottom: 0;
+
+              &:hover {
+                background: black;
+                color: white;
+
+                @media (prefers-color-scheme: dark) {
+                  background: rgba(255, 255, 255, 0.4);
+                  // color: black;
+                }
+              }
+            }
           }
         }
       }
-
-      .text-column {
-        max-height: 50px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
     }
   }
-
-
 }
