@@ -1,4 +1,4 @@
-@import './variables';
+@import "./variables";
 
 @mixin container {
   height: 100%;
@@ -21,7 +21,7 @@
     flex-direction: column;
     justify-content: space-around;
 
-    @media only screen and (min-width: $mobile){
+    @media only screen and (min-width: $mobile) {
       flex-direction: row;
     }
 
@@ -36,8 +36,12 @@
 @mixin logo-darkmode {
   @media (prefers-color-scheme: dark) {
     .logo {
-      &.light {display: none;}
-      &.dark {display: block;}
+      &.light {
+        display: none;
+      }
+      &.dark {
+        display: block;
+      }
     }
 
     transition: ease all 1s;
@@ -45,8 +49,12 @@
 
   @media (prefers-color-scheme: light) {
     .logo {
-      &.light {display: block;}
-      &.dark {display: none;}
+      &.light {
+        display: block;
+      }
+      &.dark {
+        display: none;
+      }
     }
 
     transition: ease all 1s;
@@ -62,7 +70,7 @@
       text-align: left;
       width: 100%;
       height: 100px;
-      background: #EFEFEF;
+      background: #efefef;
       border: none;
       border-radius: 5px;
       resize: none;
@@ -74,7 +82,6 @@
       &:focus {
         outline: none;
       }
-
     }
 
     @media (prefers-color-scheme: dark) {
@@ -85,7 +92,33 @@
 
       transition: ease all 1s;
     }
+  }
+}
 
-
+/*
+  Breakpoint mixins
+  usage: @include breakpoint(desktop|tablet-landscape|tablet|mobileonly)
+*/
+@mixin breakpoint($point) {
+  @if $point == desktop {
+    @media only screen and (min-width: 1200px) {
+      @content;
+    }
+  } @else if $point == tablet-landscape {
+    @media only screen and (min-width: 1024px) {
+      @content;
+    }
+  } @else if $point == tablet {
+    @media only screen and (min-width: 768px) {
+      @content;
+    }
+  } @else if $point == mobile-only {
+    @media only screen and (max-width: 768px) {
+      @content;
+    }
+  } @else {
+    @media only screen and (min-width: $point) {
+      @content;
+    }
   }
 }
