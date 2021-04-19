@@ -1,6 +1,9 @@
 @import "../variables";
 @import "../mixins";
 
+$border-color-light: rgba(0, 0, 0, 0.5);
+$border-color-dark: rgba(255, 255, 255, 0.5);
+
 .archive-page {
   .container {
     @include container;
@@ -28,11 +31,12 @@
           margin-bottom: 1em;
           margin-left: 0;
           display: flex;
-          border: 1px solid rgba(0, 0, 0, 0.4);
+          border: 1px solid $border-color-light;
+          border-radius: $border-radius;
           max-height: 100px;
 
           @media (prefers-color-scheme: dark) {
-            border: 1px solid rgba(255, 255, 255, 0.4);
+            border: 1px solid $border-color-dark;
           }
 
           .content {
@@ -44,17 +48,7 @@
               height: 100%;
               overflow: hidden;
               text-overflow: ellipsis;
-              border: 1px solid rgba(0, 0, 0, 0.4);
               padding: 1em;
-
-              @media (prefers-color-scheme: dark) {
-                border: 1px solid rgba(255, 255, 255, 0.4);
-                border-top: 0;
-                border-bottom: 0;
-              }
-
-              border-top: 0;
-              border-bottom: 0;
 
               .text {
                 overflow: hidden;
@@ -73,6 +67,11 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
+            border-left: 1px solid $border-color-dark;
+
+            @media (prefers-color-scheme: dark) {
+              border-left: 1px solid $border-color-dark;
+            }
 
             .action-link {
               height: 30px;
