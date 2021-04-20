@@ -21,13 +21,8 @@
                         <div class="word-count"><%= session.word_count %></div>
                     </div>
                     <div class="actions">
-                        <%= link_to 'View', session, class: 'action-link' %>
                         <%= link_to 'Resume', edit_writing_session_path(session), class: 'action-link' %>
-                        <%
-=begin%>
-                        <%= link_to 'Delete', session, method: :delete, class: 'action-link', data: {confirm: 'Are you sure you want to delete this?'} %>
-                        <%
-=end%>
+                        <%= link_to 'Destroy', session, method: :delete, class: 'action-link', data: {confirm: 'Are you sure you want to delete this?'} %>
                     </div>
                 </dd>
                 <% end %>
