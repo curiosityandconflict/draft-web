@@ -15,7 +15,7 @@
         <div class="sessions-table-container">
             <dl class="sessions-table">
                 <% @sessions.each do |session| %>
-                <dd>
+                <dd class="session">
                     <div class="content">
                         <div class="text-column"><%= render partial: 'text', locals: {text: session.text} %></div>
                         <div class="word-count"><%= session.word_count %></div>
