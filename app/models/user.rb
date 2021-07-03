@@ -10,6 +10,6 @@ class User < ApplicationRecord
   private
 
   def subscribe_to_mailing
-    MailerLite.create_subscriber(email: email)
+    MailerLite.create_group_subscriber( 107870239, {email: email} )
   end
 end
