@@ -5,4 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :writing_sessions
+  after_create :subscribe_to_mailing
+
+  private
+
+  def subscribe_to_mailing
+    MailerLite.create_subscriber(email: email)
+  end
 end
