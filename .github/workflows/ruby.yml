@@ -17,7 +17,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env: # Or as an environment variable
-      RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+      RAILS_ENV: test
+      RAILS_MASTER_KEY: ${{ secrets.RAILS_TEST_KEY }}
     steps:
       - uses: actions/checkout@v2
       - uses: ruby/setup-ruby@v1
