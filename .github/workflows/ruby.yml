@@ -16,6 +16,8 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env: # Or as an environment variable
+      RAILS_MASTER_KEY: ${{ secrets.RAILS_DEVELOPMENT_KEY }}
     steps:
       - uses: actions/checkout@v2
       - uses: ruby/setup-ruby@v1
@@ -24,10 +26,6 @@ jobs:
       - name: Yarn install
         run: yarn --frozen-lockfile
       - name: Precompile assets
-        env: # Or as an environment variable
-          RAILS_MASTER_KEY: ${{ secrets.RAILS_DEVELOPMENT_KEY }}
         run: bundle exec rails assets:precompile
       - name: Run tests
-        env: # Or as an environment variable
-          RAILS_MASTER_KEY: ${{ secrets.RAILS_DEVELOPMENT_KEY }}
         run: bundle exec rake
