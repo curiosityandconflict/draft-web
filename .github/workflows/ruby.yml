@@ -28,4 +28,6 @@ jobs:
           RAILS_MASTER_KEY: ${{ secrets.RAILS_DEVELOPMENT_KEY }}
         run: bundle exec rails assets:precompile
       - name: Run tests
+        env: # Or as an environment variable
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_DEVELOPMENT_KEY }}
         run: bundle exec rake
