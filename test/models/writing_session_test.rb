@@ -1,7 +1,8 @@
 require 'test_helper'
 
 class WritingSessionTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  context "associations" do
+    should belong_to(:user)
+    should belong_to(:story).optional(true)
+  end
 end

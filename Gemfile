@@ -63,6 +63,7 @@ group :test do
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'rails-controller-testing'
   gem 'webdrivers'
+  gem "shoulda", '~> 4.0'
 end
 
 group :production do

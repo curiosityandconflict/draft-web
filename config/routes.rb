@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     get :archive, path: 'archive', on: :collection
     get :header_actions, path: ':id/header_actions', on: :collection
   end
+
+  resources :stories, only: [:index, :new, :create, :update, :destroy]
   
 
   root to: 'writing_sessions#index'
