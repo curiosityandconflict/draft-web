@@ -1,0 +1,25 @@
+<div class='new-story-page page'>
+  <div class="header">
+    <h3 class="title">New Story</h3>
+    <div class="header-actions">
+      <%= link_to 'Back', writing_sessions_path, class: 'header-action', data: {'turbo-action': 'restore'} %>
+    </div>
+  </div>
+  <div class="container">
+    <%= form_with(model: @story, class: 'story-form') do |form| %>
+      <% if @story.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@story.errors.count, "error") %> prohibited this story from being saved:</h2>
+          <ul>
+            <% @story.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <%= form.label :title %>
+      <%= form.text_field :title, value: '', placeholder: 'Enter title' %>
+      <%= form.submit "Create Story" %>
+    <% end %>
+  </div>
+</div>

@@ -13,6 +13,7 @@ class Ability
     end
 
     can :manage, WritingSession, user_id: user.id
+    can :manage, Story, user_id: user.id
     #
     # The first argument to `can` is the action you are giving the user
     # permission to do.

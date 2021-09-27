@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     get :header_actions, path: ':id/header_actions', on: :collection
   end
 
-  resources :stories, only: [:index, :new, :create, :update, :destroy]
+  resources :stories
   
 
   root to: 'writing_sessions#index'

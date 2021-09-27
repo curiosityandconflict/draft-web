@@ -1,38 +1,35 @@
 class StoriesController < ApplicationController
-    before_action :story, only: [:show, :update, :destroy]
+  load_and_authorize_resource
 
-    def index 
-        @stories = current_user.stories
-    end
+  def index
+    @stories = @stories.order(created_at: :desc)
+  end
 
-    def new
-        @story = current_user.stories.new
-    end
+  def new
+    
+  end
 
-    def create
-        @story = current_user.stories.create(story_params)
-    end
+  def create
+    @story = current_user.stories.create(story_params)
 
-    def show
+    redirect_to story_path(@story), status: :see_other
+  end
 
-    end
+  def show
 
+  end
 
-    def update
-        
-    end
+  def update
+    @story.update(story_params)
+  end
 
-    def destroy
+  def destroy
+    @story.destroy!
+  end
 
-    end
+  private
 
-    private
-
-    def story_params
-        params.require(:story).permit(:title)
-    end
-
-    def story
-        @story = current_user.stories.find(params[:id])
-    end
+  def story_params
+    params.require(:story).permit(:title)
+  end
 end

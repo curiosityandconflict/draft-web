@@ -15,11 +15,21 @@ class StoriesControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  context '#new' do
+    should 'get new story form' do
+      get new_story_url
+      assert_response :success
+    end
+  end
+
   context '#create' do
     should 'create a new story' do
       assert_difference('Story.count') do
         post stories_url, params: { story: { title: "New Story Title" } }
       end
+
+      assert_response :see_other
+      assert_redirected_to story_url(Story.last)
     end
   end
   

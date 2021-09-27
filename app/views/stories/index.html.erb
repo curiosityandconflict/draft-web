@@ -1,19 +1,20 @@
 <div class="stories-page page">
-    <div class="header">
-        <h3 class="title">Stories</h3>
-        <div class="header-actions">
-            <%= link_to 'Back', writing_sessions_path, class: 'header-action', data: {'turbo-action': 'restore'} %>
-        </div>
+  <div class="header">
+    <h3 class="title">Stories</h3>
+    <div class="header-actions">
+      <%= link_to 'Back', writing_sessions_path, class: 'header-action', data: {'turbo-action': 'restore'} %>
     </div>
-    <div class="container">
-        <dl class="stories-table">
-            <% @stories.each do |session| %>
-            <dd class="story">
-                <div class="content">
-                    <label><%= @story.title %></label>
-                </div>
-            </dd>
-            <% end %>
-        </dl>
-    </div>
+  </div>
+  <div class="container">
+    <dl class="stories-grid">
+      <% @stories.each do |story| %>
+        <a class="story button-link" href="<%= story_path(story) %>">
+          <%= story.title %>
+        </a>
+      <% end %>
+      <a class="story button-link" href="<%= new_story_path %>">
+          Add a New Story
+        </a>
+    </dl>
+  </div>
 </div>
