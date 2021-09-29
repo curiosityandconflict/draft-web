@@ -5,8 +5,8 @@
   @include container-columns;
   @include logo-darkmode;
 
-  .new-session-link,
-  .session-archive-link {
+  .primary-link,
+  .secondary-link {
     border: 2px solid black;
     color: black;
     font-weight: bold;
@@ -30,8 +30,8 @@
   }
 
   @media (prefers-color-scheme: dark) {
-    .new-session-link,
-    .session-archive-link {
+    .primary-link,
+    .secondary-link {
       border-color: lightgray;
       color: lightgray;
 
@@ -43,7 +43,7 @@
     }
   }
 
-  .session-archive-link {
+  .secondary-link {
     height: 40px;
     margin-top: 20px;
     opacity: 0.4;
