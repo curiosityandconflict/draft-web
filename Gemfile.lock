@@ -395,6 +395,7 @@ DEPENDENCIES
   rails-controller-testing
   rails_admin (~> 2.2.1)
   redis (~> 4.0)
+  rubocop
   sass-rails (>= 6)
   selenium-webdriver
   shoulda (~> 4.0)

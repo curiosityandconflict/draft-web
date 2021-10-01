@@ -1,12 +1,8 @@
 class WritingSessionsController < ApplicationController
   protect_from_forgery with: :exception, if: Proc.new { |c| c.request.format != 'application/json' }
   protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
-  before_action :set_session, only: [:show, :edit, :update, :destroy, :header_actions]
-
-  # GET /writing_sessions
-  # GET /writing_sessions.json
-  def index
-  end
+  before_action :story
+  before_action :writing_session, only: [:show, :edit, :update, :destroy, :header_actions]
 
   # GET /writing_sessions/1
   # GET /writing_sessions/1.json
@@ -21,7 +17,7 @@ class WritingSessionsController < ApplicationController
   # GET /writing_sessions/new
   def new
     @title = 'Compose'
-    @session = WritingSession.new
+    @session = @story.writing_sessions.new
   end
 
   # GET /writing_sessions/1/edit
@@ -43,13 +39,13 @@ class WritingSessionsController < ApplicationController
     params = session_params
     params[:text] = "<div>#{params[:text]}</div>"
 
-    @session = WritingSession.new params
+    @session = @story.writing_sessions.new params
     @session.user_id = current_user.id
     @session.word_count = get_word_count @session.text
 
     respond_to do |format|
       if @session.save
-        format.html { redirect_to edit_writing_session_path(@session.id), notice: 'Session was successfully created.' }
+        format.html { redirect_to edit_story_writing_session_path(@story, @session.id), notice: 'Session was successfully created.' }
         format.json { render json: @session, status: :ok }
       else
         format.html { render :new }
@@ -88,7 +84,7 @@ class WritingSessionsController < ApplicationController
 
     @session.destroy
     respond_to do |format|
-      format.html { redirect_to archive_writing_sessions_url, notice: 'Session was successfully destroyed.' }
+      format.html { redirect_to story_writing_sessions_url(@story), notice: 'Session was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -120,9 +116,9 @@ class WritingSessionsController < ApplicationController
   # GET /writing_sessions/1/headerActions.json
   def header_actions
     if params[:id]
-      @session = WritingSession.find(params[:id])
+      @session = @story.writing_sessions.find(params[:id])
     else
-      @session = WritingSession.new
+      @session = @story.writing_sessions.new
     end
 
     render partial: 'writing_sessions/headerActions'
@@ -135,8 +131,14 @@ class WritingSessionsController < ApplicationController
   end
 
   # Use callbacks to share common setup or constraints between actions.
-  def set_session
-    @session = WritingSession.find(params[:id])
+  def writing_session
+    @session = @story.writing_sessions.find(params[:id])
+  end
+
+  def story
+    @story = current_user.stories.find(params[:story_id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to_home
   end
 
   # Only allow a list of trusted parameters through.

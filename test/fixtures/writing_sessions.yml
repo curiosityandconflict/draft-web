@@ -3,14 +3,17 @@
 one:
   word_count: 100
   text: MyText
-  user_id: 1
+  user: bob
+  story: one
 
 two:
   word_count: 2
   text: My Text
-  user_id: 1
+  user: bob
+  story: two
 
 three:
   word_count: 5
   text: My five words are these
-  user_id: 2
+  user: jane
+  story: three

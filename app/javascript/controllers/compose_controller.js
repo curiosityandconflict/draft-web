@@ -22,11 +22,11 @@ export default class extends Controller {
         textViewTarget.scrollTop = textViewTarget.scrollHeight;
     }
 
-    getHeaderActions(id) {
+    getHeaderActions(story_id, id) {
         const {headerActionsTarget} = this;
 
         Rails.ajax({
-            url: `/writing_sessions/${id}/header_actions`,
+            url: `stories/${story_id}/writing_sessions/${id}/header_actions`,
             datatype: 'script',
             type: `GET`,
             success: (data) => {
@@ -74,19 +74,19 @@ export default class extends Controller {
                 data: formData,
                 type: `${this.update ? 'PUT' : 'POST'}`,
                 success: (data) => {
-                    const {word_count, id, text} = data;
+                    const {word_count, id, text, story_id} = data;
                     $(countTarget).text(word_count);
                     countTarget.setAttribute('data-original-count', word_count);
 
                     //update form route
                     if(!this.update){
-                        this.getHeaderActions(id);
+                        this.getHeaderActions(story_id, id);
                     }
-                    this.form_url = `/writing_sessions/${id}`;
+                    this.form_url = `/stories/${story_id}/writing_sessions/${id}`;
                     //switch to put instead of post
                     this.update = true;
                     //push new route into browser
-                    window.history.pushState({},'',`/writing_sessions/${id}/edit`)
+                    window.history.pushState({},'',`/stories/${story_id}/writing_sessions/${id}/edit`)
 
                 },
                 error: (error) => {

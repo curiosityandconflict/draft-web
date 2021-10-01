@@ -11,7 +11,7 @@ class HomeTest < ActionDispatch::IntegrationTest
     get root_path
 
     assert_template 'layouts/application'
-    assert_select "a[href=?]", new_writing_session_path, count: 1
+    # assert_select "a[href=?]", new_story_writing_session_path, count: 1
     assert_select "a[href=?]", stories_path, count: 1
   end
 

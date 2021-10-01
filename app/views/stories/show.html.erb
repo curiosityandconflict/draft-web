@@ -1,3 +1,34 @@
 <div class='show-story-page page'>
-  <h1><%= @story.title %></h1>
+  <div class="header">
+        <h3 class="title"><%= @story.title %></h3>
+        <div class="header-actions">
+            <%= link_to 'Back', stories_path, class: 'header-action', data: {'turbo-action': 'restore'} %>
+        </div>
+    </div>
+
+  <div class="container">
+
+        <div>
+            Word Count Total: <%= @word_count_total %>
+        </div>
+
+        <%= link_to 'New Session', new_story_writing_session_path(@story), class: 'primary-link' %>
+
+        <div class="sessions-table-container">
+            <dl class="sessions-table">
+                <% @story.writing_sessions.each do |session| %>
+                <dd class="session">
+                    <div class="content">
+                        <div class="text-column"><%= render partial: 'writing_sessions/text', locals: {text: session.text} %></div>
+                        <div class="word-count"><%= session.word_count %></div>
+                    </div>
+                    <div class="actions">
+                        <%= link_to 'Resume', edit_story_writing_session_path(@story, session), class: 'action-link' %>
+                        <%= link_to 'Destroy', story_writing_session_path(@story,session), method: :delete, class: 'action-link', data: {confirm: 'Are you sure you want to delete this?'} %>
+                    </div>
+                </dd>
+                <% end %>
+            </dl>
+        </div>
+    </div>
 </div>

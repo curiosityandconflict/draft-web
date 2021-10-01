@@ -12,7 +12,11 @@ class StoriesControllerTest < ActionDispatch::IntegrationTest
     should 'get index' do
       get stories_url
       assert_response :success
+
+      assert_select ".story", count: users(:bob).stories.count+1
     end
+
+
   end
 
   context '#new' do
