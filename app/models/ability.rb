@@ -8,7 +8,6 @@ class Ability
     #
     user ||= User.new # guest user (not logged in)
     if user.admin_role?
-      can :manage, :all
       can :access, :rails_admin
     end
 

@@ -16,6 +16,14 @@ class StoriesControllerTest < ActionDispatch::IntegrationTest
       assert_select ".story", count: users(:bob).stories.count+1
     end
 
+    should 'restrict admin to only their own stories' do
+      sign_in users(:admin)
+      
+      get stories_url
+      assert_response :success
+
+      assert_select ".story", count: users(:admin).stories.count+1
+    end
 
   end
 
