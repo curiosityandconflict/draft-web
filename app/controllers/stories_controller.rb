@@ -6,7 +6,6 @@ class StoriesController < ApplicationController
   end
 
   def new
-    
   end
 
   def create
@@ -16,7 +15,9 @@ class StoriesController < ApplicationController
   end
 
   def show
-
+    sum = 0
+    @story.writing_sessions.each { |x| sum += x.word_count }
+    @word_count_total = sum
   end
 
   def update

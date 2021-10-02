@@ -51,17 +51,6 @@ class WritingSessionsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to story_writing_sessions_url(@story)
   end
 
-  test 'should show sessions archive' do
-    get archive_story_writing_sessions_url(@story)
-    assert_response :success
-  end
-
-  test 'should limit archive sessions to users' do
-    get archive_story_writing_sessions_url(@story)
-
-    assert_select '.session', count: users(:bob).writing_sessions.count
-  end
-
   test 'should get word count' do
     get word_count_story_writing_sessions_url(@story), xhr: true
 

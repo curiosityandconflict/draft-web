@@ -3,6 +3,7 @@ class WritingSessionsController < ApplicationController
   protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
   before_action :story
   before_action :writing_session, only: [:show, :edit, :update, :destroy, :header_actions]
+  layout "home", only: [:new, :edit]
 
   # GET /writing_sessions/1
   # GET /writing_sessions/1.json
@@ -99,17 +100,6 @@ class WritingSessionsController < ApplicationController
     respond_to do |format|
       format.json { render json: { word_count: sum }, status: :ok }
     end
-  end
-
-  # GET /writing_sessions/archive
-  # GET /writing_sessions/archive.json
-  def archive
-    @title = 'Archive'
-    @sessions = WritingSession.where(user_id: current_user.id).order(updated_at: :desc)
-
-    sum = 0
-    word_count_per_day.each { |x| sum += x.total_words }
-    @word_count_total = sum
   end
 
   # GET /writing_sessions/1/headerActions

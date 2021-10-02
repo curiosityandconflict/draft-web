@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
-  def index
+  layout 'home', only: [:index]
+
+  def index 
   end
 end
