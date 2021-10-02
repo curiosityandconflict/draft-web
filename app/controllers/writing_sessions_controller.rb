@@ -3,6 +3,7 @@ class WritingSessionsController < ApplicationController
   protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
   before_action :story
   before_action :writing_session, only: [:show, :edit, :update, :destroy, :header_actions]
+  after_action :touch_story, only: [:create, :update, :destroy]
   layout "home", only: [:new, :edit]
 
   # GET /writing_sessions/1
@@ -138,5 +139,9 @@ class WritingSessionsController < ApplicationController
 
   def word_count_per_day
     WritingSession.where(user_id: current_user.id).select('date(created_at) as session_date, sum(word_count) as total_words').group('date(created_at)')
+  end
+
+  def touch_story
+    @story.try(:touch)
   end
 end

@@ -6,11 +6,7 @@
 <% end %>
 
 <dl class="stories-grid">
-  <% @stories.each do |story| %>
-    <a class="story button-link" href="<%= story_path(story) %>">
-      <%= story.title %>
-    </a>
-  <% end %>
+  <%= render "stories" %>
   <a class="story button-link" href="<%= new_story_path %>">
     Add a New Story
   </a>

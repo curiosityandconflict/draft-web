@@ -9,6 +9,21 @@
   @include container-columns;
   @include logo-darkmode;
 
+  .stories-list {
+    display: flex;
+    flex-direction: column;
+
+    .story {
+      margin-bottom: 16px;
+      padding: 10px;
+      transition: all 0.5rs;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
   .primary-link,
   .secondary-link {
     border: 2px solid black;

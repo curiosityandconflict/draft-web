@@ -1,0 +1,5 @@
+<% @stories.each do |story| %>
+  <a class="story button-link" href="<%= story_path(story) %>">
+    <%= story.title %>
+  </a>
+<% end %>

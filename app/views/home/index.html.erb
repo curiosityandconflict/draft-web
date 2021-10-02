@@ -14,7 +14,18 @@
     </div>
     <div>
       <%# <%= link_to 'New Session', new_writing_session_path, class: 'primary-link' %>
-      <%= link_to 'View Stories', stories_path, class: 'secondary-link' %>
+      <div class="stories-list">
+        <% if @stories.count > 0 %>
+          <%= render "stories/stories" %>
+        <% else %>
+          <a class="story primary-link" href="<%= new_story_path %>">
+            Write a New Story
+          </a>
+        <% end %>
+      </div>
+      <% if @stories.count > 0 %>
+        <%= link_to 'View All Stories', stories_path, class: 'secondary-link' %>
+      <% end %>
     </div>
   </div>
 </div>
