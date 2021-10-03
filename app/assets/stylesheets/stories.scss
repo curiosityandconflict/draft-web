@@ -27,8 +27,8 @@
   &.show {
     .top {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: space-between;
       width: 100%;
       padding: 0 16px;
       margin-bottom: 32px;
@@ -36,6 +36,8 @@
       @include breakpoint(tablet) {
         padding: 0 32px;
         width: 80%;
+        justify-content: space-between;
+        flex-direction: row;
       }
 
       @include breakpoint(desktop) {
@@ -45,7 +47,11 @@
 
       .primary-link {
         padding: 8px 18px;
-        margin-top: 8px;
+        margin-top: 32px;
+
+        @include breakpoint(tablet) {
+          margin-top: 8px;
+        }
       }
     }
     .container {
@@ -143,6 +149,20 @@
             }
           }
         }
+      }
+    }
+  }
+
+  .update-story-form {
+    input[type=text] {
+      background: transparent;
+      color: $dark;
+      border: none;
+      border-bottom: 1px solid $dark;
+
+      @media (prefers-color-scheme: dark) {
+        color: $light;
+        border-bottom: 1px solid $light;
       }
     }
   }

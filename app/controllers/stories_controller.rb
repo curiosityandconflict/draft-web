@@ -18,8 +18,13 @@ class StoriesController < ApplicationController
     @word_count_total = @story.writing_sessions.map(&:word_count).sum
   end
 
+  def edit
+  end
+
   def update
     @story.update(story_params)
+
+    render :show
   end
 
   def destroy
