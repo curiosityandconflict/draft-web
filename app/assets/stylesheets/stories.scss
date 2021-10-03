@@ -25,6 +25,29 @@
   }
 
   &.show {
+    .top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 0 16px;
+      margin-bottom: 32px;
+
+      @include breakpoint(tablet) {
+        padding: 0 32px;
+        width: 80%;
+      }
+
+      @include breakpoint(desktop) {
+        padding: 0 64px;
+        max-width: 1200px;
+      }
+
+      .primary-link {
+        padding: 8px 18px;
+        margin-top: 8px;
+      }
+    }
     .container {
       // @include container;
 
