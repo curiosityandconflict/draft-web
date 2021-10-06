@@ -15,7 +15,8 @@ class StoriesController < ApplicationController
   end
 
   def show
-    @word_count_total = @story.writing_sessions.map(&:word_count).sum
+    @writing_sessions = @story.writing_sessions.order(updated_at: :desc)
+    @word_count_total = @writing_sessions.map(&:word_count).sum
   end
 
   def edit

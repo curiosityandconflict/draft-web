@@ -10,10 +10,10 @@ class WritingSessionsControllerTest < ActionDispatch::IntegrationTest
     @story = stories(:one)
   end
 
-  # test 'should get index' do
-  #   get story_writing_sessions_url(@story)
-  #   assert_response :success
-  # end
+  test 'should get index' do
+    get story_writing_sessions_url(@story)
+    assert_response :success
+  end
 
   test 'should get new' do
     get new_story_writing_session_url(@story)

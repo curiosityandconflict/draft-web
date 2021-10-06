@@ -6,14 +6,20 @@ class WritingSessionsController < ApplicationController
   after_action :touch_story, only: [:create, :update, :destroy]
   layout "home", only: [:new, :edit]
 
+  def index
+    unless can? :read, @story
+      redirect_to_home
+    end
+
+    @writing_sessions = @story.writing_sessions.order(updated_at: :desc)
+  end
+
   # GET /writing_sessions/1
   # GET /writing_sessions/1.json
   def show
     unless can? :read, @session
       redirect_to_home
     end
-
-    @title = 'Show'
   end
 
   # GET /writing_sessions/new
@@ -27,8 +33,6 @@ class WritingSessionsController < ApplicationController
     unless can? :update, @session
       redirect_to_home
     end
-
-    @title = 'Compose'
   end
 
   # POST /writing_sessions
@@ -43,7 +47,7 @@ class WritingSessionsController < ApplicationController
 
     @session = @story.writing_sessions.new params
     @session.user_id = current_user.id
-    @session.word_count = get_word_count @session.text
+    @session.word_count = @session.calculate_word_count
 
     respond_to do |format|
       if @session.save
@@ -63,11 +67,11 @@ class WritingSessionsController < ApplicationController
       redirect_to_home
     end
 
-    text = @session.text + "<div>#{session_params[:text]}</div>"
-    word_count = get_word_count text
+    @session.text = @session.text + "<div>#{session_params[:text]}</div>"
+    @session.word_count = @session.calculate_word_count
 
     respond_to do |format|
-      if @session.update(text: text, word_count: word_count)
+      if @session.save
         format.html { render :edit, notice: 'Session was successfully updated.' }
         format.json { render json: @session, status: :ok }
       else
@@ -116,10 +120,6 @@ class WritingSessionsController < ApplicationController
   end
 
   private
-
-  def get_word_count(text)
-    text.gsub(/\\n/, ' ').gsub('<div>', ' ').gsub('</div>', ' ').split.size
-  end
 
   # Use callbacks to share common setup or constraints between actions.
   def writing_session
