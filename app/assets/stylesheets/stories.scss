@@ -12,13 +12,15 @@
       flex-direction: column;
 
       .story {
-        margin-left: 16px;
+        // margin-left: 16px;
         margin-bottom: 16px;
-        padding: 10px;
+        // padding: 10px;
         transition: all 0.5rs;
 
-        &:hover {
-          cursor: pointer;
+        a {
+          padding: 8px 16px;
+          border: none;
+          margin-right: 8px;
         }
       }
     }

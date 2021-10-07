@@ -15,11 +15,23 @@
 
     .story {
       margin-bottom: 16px;
-      padding: 10px;
       transition: all 0.5rs;
+      border-radius: $border-radius;
+      border: 1px solid $dark;
+      padding: 10px;
 
-      &:hover {
-        cursor: pointer;
+      @media (prefers-color-scheme: dark) {
+        border: 1px solid $light;
+      }
+
+      h3 {
+        margin-top: 0;
+      }
+
+      a {
+        padding: 8px 16px;
+        border: none;
+        margin-right: 8px;
       }
     }
   }

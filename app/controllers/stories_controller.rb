@@ -1,5 +1,6 @@
 class StoriesController < ApplicationController
   load_and_authorize_resource
+  before_action :writing_sessions, only: [ :show, :update ]
 
   def index
     @stories = @stories.order(created_at: :desc)
@@ -10,12 +11,12 @@ class StoriesController < ApplicationController
 
   def create
     @story = current_user.stories.create(story_params)
+    writing_sessions
 
     redirect_to story_path(@story), status: :see_other
   end
 
   def show
-    @writing_sessions = @story.writing_sessions.order(updated_at: :desc)
     @word_count_total = @writing_sessions.map(&:word_count).sum
   end
 
@@ -36,5 +37,9 @@ class StoriesController < ApplicationController
 
   def story_params
     params.require(:story).permit(:title)
+  end
+
+  def writing_sessions
+    @writing_sessions = @story.writing_sessions.order(updated_at: :desc)
   end
 end

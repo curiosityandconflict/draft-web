@@ -78,6 +78,7 @@ a {
   &.button-link {
     border: 1px solid $dark;
     border-radius: $border-radius;
+    padding: 8px 16px;
 
     &:hover {
       border-color: $darkest;
