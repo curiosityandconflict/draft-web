@@ -44,8 +44,6 @@ group :development, :test do
 end
 
 group :development do
-  gem 'solargraph'
-  gem 'rubocop'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'listen', '~> 3.2'
   gem 'web-console', '>= 3.3.0'
@@ -54,6 +52,8 @@ group :development do
   gem 'guard'
   gem 'guard-livereload', '~> 2.5', require: false
   gem 'guard-minitest'
+  gem 'rubocop'
+  gem 'solargraph'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
@@ -64,8 +64,9 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'rails-controller-testing'
-  gem 'webdrivers'
   gem "shoulda", '~> 4.0'
+  gem 'simplecov', require: false
+  gem 'webdrivers'
 end
 
 group :production do
