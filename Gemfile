@@ -40,10 +40,12 @@ group :development, :test do
   gem 'sqlite3', '~> 1.4'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'htmlbeautifier'
 end
 
 group :development do
   gem 'solargraph'
+  gem 'rubocop'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'listen', '~> 3.2'
   gem 'web-console', '>= 3.3.0'
@@ -63,6 +65,7 @@ group :test do
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'rails-controller-testing'
   gem 'webdrivers'
+  gem "shoulda", '~> 4.0'
 end
 
 group :production do

@@ -1,68 +1,58 @@
 require 'test_helper'
 require 'json'
 
-class SessionsControllerTest < ActionDispatch::IntegrationTest
+class WritingSessionsControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 
   setup do
     sign_in users(:bob)
     @session = writing_sessions(:one)
+    @story = stories(:one)
   end
 
   test 'should get index' do
-    get writing_sessions_url
+    get story_writing_sessions_url(@story)
     assert_response :success
   end
 
   test 'should get new' do
-    get new_writing_session_url
+    get new_story_writing_session_url(@story)
     assert_response :success
   end
 
   test 'should create session' do
     assert_difference('WritingSession.count') do
-      post writing_sessions_url, params: { session: { text: @session.text, word_count: @session.word_count } }
+      post story_writing_sessions_url(@story), params: { session: { text: @session.text, word_count: @session.word_count }  }
     end
 
-    assert_redirected_to edit_writing_session_url(WritingSession.last)
+    assert_redirected_to edit_story_writing_session_url(@story, WritingSession.last)
   end
 
   test 'should show session' do
-    get writing_session_url(@session)
+    get story_writing_session_url(@story, @session)
     assert_response :success
   end
 
   test 'should get edit' do
-    get edit_writing_session_url(@session)
+    get edit_story_writing_session_url(@story, @session)
     assert_response :success
   end
 
   test 'should update session' do
-    patch writing_session_url(@session), params: { session: { text: @session.text, word_count: @session.word_count } }
+    patch story_writing_session_url(@story, @session), params: { session: { text: @session.text, word_count: @session.word_count }, story_id: @story.id }
     assert_response :success
   end
 
   test 'should destroy session' do
     assert_difference('WritingSession.count', -1) do
-      delete writing_session_url(@session)
+      delete story_writing_session_url(@story, @session)
     end
 
-    assert_redirected_to archive_writing_sessions_url
-  end
-
-  test 'should show sessions archive' do
-    get archive_writing_sessions_url
-    assert_response :success
-  end
-
-  test 'should limit archive sessions to users' do
-    get archive_writing_sessions_url
-
-    assert_select '.session', count: users(:bob).writing_sessions.count
+    assert_redirected_to story_writing_sessions_url(@story)
   end
 
   test 'should get word count' do
-    get word_count_writing_sessions_url, xhr: true
+    get word_count_story_writing_sessions_url(@story), xhr: true
 
     assert_response :ok
     assert_equal 102, JSON.parse(@response.body)['word_count']
@@ -71,28 +61,28 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   test 'should protect viewing writing sessions from other users' do
     sign_in users(:jane)
 
-    get writing_session_url(@session)
+    get story_writing_session_url(@story, @session)
     assert_redirected_to root_path
   end
 
   test 'should protect edit writing sessions from other users' do
     sign_in users(:jane)
 
-    get edit_writing_session_url(@session)
+    get edit_story_writing_session_url(@story, @session)
     assert_redirected_to root_path
   end
 
-  test 'should allow admin to view writing sessions from other users' do
+  test 'should not allow admin to view writing sessions from other users' do
     sign_in users(:admin)
 
-    get writing_session_url(@session)
-    assert_response :success
+    get story_writing_session_url(@story, @session)
+    assert_redirected_to root_path
   end
 
-  test 'should allow admin to edit writing sessions from other users' do
+  test 'should not allow admin to edit writing sessions from other users' do
     sign_in users(:admin)
 
-    get edit_writing_session_url(@session)
-    assert_response :success
+    get edit_story_writing_session_url(@story, @session)
+    assert_redirected_to root_path
   end
 end

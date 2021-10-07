@@ -1,20 +1,8 @@
-<div class="index-page page">
-  <div class="header">
-    <h3 class="title"></h3>
-    <div class="header-actions">
-      <%= link_to 'Account', edit_user_registration_path, class: 'header-action', data: {'turbo-action': 'replace'} %>
-      <%= link_to 'Logout', destroy_user_session_path, method: 'DELETE', class: 'header-action', data: {'turbo-action': 'restore'} %>
-    </div>
+<% content_for :header do %>
+  <h3><%= @story.title %> - Writing Sessions</h3>
+  <div class="header-actions">
+    <%= link_to 'Back', @story, class: 'header-action', data: {'turbo-action': 'restore'} %>
   </div>
-  <div class="container columns">
-    <div>
-      <%= image_tag('LogoDark.png', size: '150', class: 'logo dark') %>
-      <%= image_tag('LogoLight.png', size: '150', class: 'logo light') %>
-      <small class="by-text">by Curiosity & Conflict</small>
-    </div>
-    <div>
-      <%= link_to 'New Session', new_writing_session_path, class: 'new-session-link' %>
-      <%= link_to 'View Archive', archive_writing_sessions_path, class: 'session-archive-link' %>
-    </div>
-  </div>
-</div>
+<% end %>
+
+<%= render partial: 'writing_sessions', locals: { story: @story, writing_sessions: @writing_sessions } %>

@@ -1,0 +1,23 @@
+<% content_for :meta do %>
+  <meta name="turbo-visit-control" content="reload">
+<% end %>
+<% content_for :header do %>
+  <h3></h3>
+  <div class="header-actions">
+    <%= link_to 'All Stories', stories_path, class: 'header-action', data: {'turbo-action': 'restore'} %>
+  </div>
+<% end %>
+<div class="top">
+  <div class="stats">
+    <h3 class="title">
+      <turbo-frame id="story_title">
+        <a href="<%= edit_story_path(@story)%>"><%= @story.title %></a>
+      </turbo-frame>
+    </h3>
+    <div>Word Count Total: <%= @word_count_total %></div>
+    <div>Writing Sessions: <%= @story.writing_sessions.count%></div>
+  </div>
+  <%= link_to 'New Session', new_story_writing_session_path(@story), class: 'primary-link button-link' %>
+</div>
+<h4>Previous Sessions</h4>
+<%= render partial: 'writing_sessions/writing_sessions', locals: { story: @story, writing_sessions: @writing_sessions, show_one: true } %>

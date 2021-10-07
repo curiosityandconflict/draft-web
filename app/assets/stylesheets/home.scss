@@ -1,9 +1,40 @@
-@import "../variables";
-@import "../mixins";
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+@import "./variables";
+@import "./mixins";
 
 .index-page {
   @include container-columns;
   @include logo-darkmode;
+
+  .stories-list {
+    display: flex;
+    flex-direction: column;
+
+    .story {
+      margin-bottom: 16px;
+      transition: all 0.5rs;
+      border-radius: $border-radius;
+      border: 1px solid $dark;
+      padding: 10px;
+
+      @media (prefers-color-scheme: dark) {
+        border: 1px solid $light;
+      }
+
+      h3 {
+        margin-top: 0;
+      }
+
+      a {
+        padding: 8px 16px;
+        border: none;
+        margin-right: 8px;
+      }
+    }
+  }
 
   .primary-link,
   .secondary-link {
@@ -49,3 +80,4 @@
     opacity: 0.4;
   }
 }
+

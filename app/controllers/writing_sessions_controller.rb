@@ -1,11 +1,17 @@
 class WritingSessionsController < ApplicationController
   protect_from_forgery with: :exception, if: Proc.new { |c| c.request.format != 'application/json' }
   protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
-  before_action :set_session, only: [:show, :edit, :update, :destroy, :header_actions]
+  before_action :story
+  before_action :writing_session, only: [:show, :edit, :update, :destroy, :header_actions]
+  after_action :touch_story, only: [:create, :update, :destroy]
+  layout "home", only: [:new, :edit]
 
-  # GET /writing_sessions
-  # GET /writing_sessions.json
   def index
+    unless can? :read, @story
+      redirect_to_home
+    end
+
+    @writing_sessions = @story.writing_sessions.order(updated_at: :desc)
   end
 
   # GET /writing_sessions/1
@@ -14,14 +20,12 @@ class WritingSessionsController < ApplicationController
     unless can? :read, @session
       redirect_to_home
     end
-
-    @title = 'Show'
   end
 
   # GET /writing_sessions/new
   def new
     @title = 'Compose'
-    @session = WritingSession.new
+    @session = @story.writing_sessions.new
   end
 
   # GET /writing_sessions/1/edit
@@ -29,8 +33,6 @@ class WritingSessionsController < ApplicationController
     unless can? :update, @session
       redirect_to_home
     end
-
-    @title = 'Compose'
   end
 
   # POST /writing_sessions
@@ -43,13 +45,13 @@ class WritingSessionsController < ApplicationController
     params = session_params
     params[:text] = "<div>#{params[:text]}</div>"
 
-    @session = WritingSession.new params
+    @session = @story.writing_sessions.new params
     @session.user_id = current_user.id
-    @session.word_count = get_word_count @session.text
+    @session.word_count = @session.calculate_word_count
 
     respond_to do |format|
       if @session.save
-        format.html { redirect_to edit_writing_session_path(@session.id), notice: 'Session was successfully created.' }
+        format.html { redirect_to edit_story_writing_session_path(@story, @session.id), notice: 'Session was successfully created.' }
         format.json { render json: @session, status: :ok }
       else
         format.html { render :new }
@@ -65,11 +67,11 @@ class WritingSessionsController < ApplicationController
       redirect_to_home
     end
 
-    text = @session.text + "<div>#{session_params[:text]}</div>"
-    word_count = get_word_count text
+    @session.text = @session.text + "<div>#{session_params[:text]}</div>"
+    @session.word_count = @session.calculate_word_count
 
     respond_to do |format|
-      if @session.update(text: text, word_count: word_count)
+      if @session.save
         format.html { render :edit, notice: 'Session was successfully updated.' }
         format.json { render json: @session, status: :ok }
       else
@@ -88,7 +90,7 @@ class WritingSessionsController < ApplicationController
 
     @session.destroy
     respond_to do |format|
-      format.html { redirect_to archive_writing_sessions_url, notice: 'Session was successfully destroyed.' }
+      format.html { redirect_to story_writing_sessions_url(@story), notice: 'Session was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -105,24 +107,13 @@ class WritingSessionsController < ApplicationController
     end
   end
 
-  # GET /writing_sessions/archive
-  # GET /writing_sessions/archive.json
-  def archive
-    @title = 'Archive'
-    @sessions = WritingSession.where(user_id: current_user.id).order(updated_at: :desc)
-
-    sum = 0
-    word_count_per_day.each { |x| sum += x.total_words }
-    @word_count_total = sum
-  end
-
   # GET /writing_sessions/1/headerActions
   # GET /writing_sessions/1/headerActions.json
   def header_actions
     if params[:id]
-      @session = WritingSession.find(params[:id])
+      @session = @story.writing_sessions.find(params[:id])
     else
-      @session = WritingSession.new
+      @session = @story.writing_sessions.new
     end
 
     render partial: 'writing_sessions/headerActions'
@@ -130,13 +121,15 @@ class WritingSessionsController < ApplicationController
 
   private
 
-  def get_word_count(text)
-    text.gsub(/\\n/, ' ').gsub('<div>', ' ').gsub('</div>', ' ').split.size
+  # Use callbacks to share common setup or constraints between actions.
+  def writing_session
+    @session = @story.writing_sessions.find(params[:id])
   end
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_session
-    @session = WritingSession.find(params[:id])
+  def story
+    @story = current_user.stories.find(params[:story_id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to_home
   end
 
   # Only allow a list of trusted parameters through.
@@ -148,10 +141,7 @@ class WritingSessionsController < ApplicationController
     WritingSession.where(user_id: current_user.id).select('date(created_at) as session_date, sum(word_count) as total_words').group('date(created_at)')
   end
 
-  def redirect_to_home
-    respond_to do |format|
-        format.html { redirect_to root_path, error: 'Action failed. You do not have the apropriate access.' }
-        # format.json { render json: @session, status: :ok }
-    end
+  def touch_story
+    @story.try(:touch)
   end
 end

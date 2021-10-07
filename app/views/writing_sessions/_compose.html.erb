@@ -1,6 +1,6 @@
 <div class="page" data-controller='compose'
      data-update=<%= session.id.present? %>
-         data-session-update-url="<%= session.id.present? ? writing_session_path(session.id) : writing_sessions_path %>">
+         data-session-update-url="<%= session.id.present? ? story_writing_session_path(story, session) : story_writing_sessions_path(story) %>">
 
   <div class="header">
     <h3 class="title">Write</h3>
@@ -19,7 +19,7 @@
       </div>
 
       <div class="compose-container">
-        <%= form_with(model: session, class: 'compose-form', data: {target: 'compose.form'}) do |form| %>
+        <%= form_with(model: [story, session], class: 'compose-form', data: {target: 'compose.form'}) do |form| %>
           <% if session.errors.any? %>
             <div id="error_explanation">
               <h2><%= pluralize(session.errors.count, "error") %> prohibited this session from being saved:</h2>

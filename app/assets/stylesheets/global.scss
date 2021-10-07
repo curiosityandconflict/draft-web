@@ -1,3 +1,6 @@
+@import "./variables.scss";
+@import "./mixins.scss";
+
 body {
   font-family: Roboto, sans-serif;
   font-size: 14px;
@@ -7,13 +10,79 @@ body {
   flex-direction: column;
   align-items: center;
   margin: 0;
+
+  transition: ease all 1s;
+
+  .page {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    margin: 0 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  
+    .header {
+      height: 30px;
+      width: 100%;
+      text-align: center;
+  
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      user-select: none;
+  
+      .title {
+        margin-top: 0;
+        color: gray;
+        flex: 1;
+        font-size: 14px;
+        line-height: 30px;
+      }
+  
+      .header-action {
+        color: gray;
+        border: 1px solid gray;
+        background: none;
+        border-radius: 5px;
+        padding: 5px 10px;
+        font-weight: bold;
+        font-size: 12px;
+        box-sizing: border-box;
+        text-decoration: none;
+        margin-right: 5px;
+  
+        &:hover {
+          color: black;
+          background: lightgray;
+        }
+      }
+    }
+  
+    .container {
+     @include container;
+    }
+  }
 }
 
 a {
-  color: black;
+  color: $dark;
   text-decoration: none;
   &:hover {
     color: #202020;
+  }
+
+  &.button-link {
+    border: 1px solid $dark;
+    border-radius: $border-radius;
+    padding: 8px 16px;
+
+    &:hover {
+      border-color: $darkest;
+    }
   }
 }
 
@@ -21,21 +90,29 @@ a {
   //transition: all 1s;
 
   body {
-    background: black;
-    color: lightgray;
+    background: $dark;
+    color: $light;
+    transition: ease all 1s;
   }
 
   a {
-    color: lightgray;
+    color: $light;
     text-decoration: none;
     &:hover {
-      color: white;
+      color: $white;
+    }
+
+    &.button-link {
+      border: 1px solid $light;
+      border-radius: $border-radius;
+
+      &:hover {
+        border-color: $white;
+      }
     }
   }
 
   h1,h2,h3,h4 {
-    color: lightgray;
+    color: $light;
   }
-
-  transition: ease all 1s;
 }

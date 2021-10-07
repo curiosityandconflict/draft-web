@@ -1,0 +1,30 @@
+<div class="index-page page">
+  <div class="header">
+    <h3 class="title"></h3>
+    <div class="header-actions">
+      <%= link_to 'Account', edit_user_registration_path, class: 'header-action', data: {'turbo-action': 'replace'} %>
+      <%= link_to 'Logout', destroy_user_session_path, method: 'DELETE', class: 'header-action', data: {'turbo-action': 'restore'} %>
+    </div>
+  </div>
+  <div class="container columns">
+    <div>
+      <%= image_tag('LogoDark.png', size: '150', class: 'logo dark') %>
+      <%= image_tag('LogoLight.png', size: '150', class: 'logo light') %>
+      <small class="by-text">by Curiosity & Conflict</small>
+    </div>
+    <div>
+      <div class="stories-list">
+        <% if @stories.count > 0 %>
+          <%= render "stories/stories" %>
+        <% else %>
+          <a class="story primary-link" href="<%= new_story_path %>">
+            Write a New Story
+          </a>
+        <% end %>
+      </div>
+      <% if @stories.count > 0 %>
+        <%= link_to 'View All Stories', stories_path, class: 'secondary-link' %>
+      <% end %>
+    </div>
+  </div>
+</div>
