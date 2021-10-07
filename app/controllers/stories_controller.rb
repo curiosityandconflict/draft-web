@@ -1,9 +1,9 @@
 class StoriesController < ApplicationController
   load_and_authorize_resource
+  before_action :stories
   before_action :writing_sessions, only: [ :show, :update ]
 
   def index
-    @stories = @stories.order(created_at: :desc)
   end
 
   def new
@@ -31,12 +31,18 @@ class StoriesController < ApplicationController
 
   def destroy
     @story.destroy!
+
+    redirect_to stories_path, status: :see_other
   end
 
   private
 
   def story_params
     params.require(:story).permit(:title)
+  end
+
+  def stories
+    @stories = current_user.stories.order(created_at: :desc)
   end
 
   def writing_sessions

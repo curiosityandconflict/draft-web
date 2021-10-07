@@ -1,9 +1,12 @@
-<% @stories.each do |story| %>
-  <div class="story">
-    <h3><%= story.title %></h3>
-    <a href="<%= story_path(story) %>">
-      View Story
-    </a>
-    <a href="<%= new_story_writing_session_path(story) %>">New Session</a>
-  </div>
-<% end %>
+<turbo-frame id="stories">
+  <% @stories.each do |story| %>
+    <div class="story">
+      <h3><%= story.title %></h3>
+      <div class="story-actions">
+        <a href="<%= story_path(story) %>" data-turbo-frame="_top">View Story</a>
+        <a href="<%= new_story_writing_session_path(story) %>" data-turbo-frame="_top">New Session</a>
+        <%= link_to 'Delete', story_path(story,session), method: :delete, data: {confirm: 'Are you sure you want to delete this?'} %>
+      </div>
+    </div>
+  <% end %>
+</turbo-frame>

@@ -86,6 +86,19 @@ a {
   }
 }
 
+input[type=text] {
+  background: transparent;
+  color: $dark;
+  border: none;
+  border-bottom: 1px solid $dark;
+  outline: none;
+
+  @media (prefers-color-scheme: dark) {
+    color: $light;
+    border-bottom: 1px solid $light;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   //transition: all 1s;
 

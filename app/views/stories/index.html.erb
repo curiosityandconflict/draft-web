@@ -4,10 +4,11 @@
     <%= link_to 'Home', root_path, class: 'header-action', data: {'turbo-action': 'restore'} %>
   </div>
 <% end %>
-
-<dl class="stories-grid">
-  <%= render "stories" %>
+<turbo-frame id="new_story_form">
   <a class="story button-link" href="<%= new_story_path %>">
     Add a New Story
   </a>
+</turbo-frame>
+<dl class="stories-grid">
+  <%= render "stories" %>
 </dl>

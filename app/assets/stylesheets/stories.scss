@@ -10,17 +10,36 @@
     .stories-grid {
       display: flex;
       flex-direction: column;
+      width: 100%;
+      max-width: 800px;
+
+      @include breakpoint(tablet) {
+        width: 80%;
+      }
 
       .story {
-        // margin-left: 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         margin-bottom: 16px;
-        // padding: 10px;
         transition: all 0.5rs;
 
-        a {
-          padding: 8px 16px;
-          border: none;
-          margin-right: 8px;
+        h3 {
+          margin-right: 16px;
+          white-space: nowrap;
+        }
+        
+        .story-actions {
+          flex: 1 0 content;
+          display: flex;
+          justify-content: flex-end;
+
+          a {
+            padding: 8px 16px;
+            border: none;
+            margin-right: 8px;
+            white-space: nowrap;
+          }
         }
       }
     }
@@ -59,20 +78,6 @@
     .container {
       justify-content: flex-start;
       align-items: center;
-    }
-  }
-
-  .update-story-form {
-    input[type=text] {
-      background: transparent;
-      color: $dark;
-      border: none;
-      border-bottom: 1px solid $dark;
-
-      @media (prefers-color-scheme: dark) {
-        color: $light;
-        border-bottom: 1px solid $light;
-      }
     }
   }
 }
