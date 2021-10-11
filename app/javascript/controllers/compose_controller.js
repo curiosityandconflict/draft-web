@@ -54,45 +54,46 @@ export default class extends Controller {
 
             if (textTarget.value === "") return;
 
-            console.log($(element).data('update'));
-            if ($(element).data('update') === false) {
+            debugger
+            // console.log($(element).data('update'));
+            // if ($(element).data('update') === false) {
                 $(document).find(event.target).closest('form').submit();
-            }
+            // }
 
-            $(document).find('.text-container .text').append(`<div>${textTarget.value}</div>`);
+            // $(document).find('.text-container .text').append(`<div>${textTarget.value}</div>`);
 
-            this.scrollToBottom();
+            // this.scrollToBottom();
 
-            let formData = new FormData();
-            formData.append("session[text]", textTarget.value);
-            textTarget.value = '';
-            const url = `${this.form_url}.json`;
+            // let formData = new FormData();
+            // formData.append("session[text]", textTarget.value);
+            // textTarget.value = '';
+            // const url = `${this.form_url}.json`;
 
-            Rails.ajax({
-                url: url,
-                datatype: 'script',
-                data: formData,
-                type: `${this.update ? 'PUT' : 'POST'}`,
-                success: (data) => {
-                    const {word_count, id, text, story_id} = data;
-                    $(countTarget).text(word_count);
-                    countTarget.setAttribute('data-original-count', word_count);
+            // Rails.ajax({
+            //     url: url,
+            //     datatype: 'script',
+            //     data: formData,
+            //     type: `${this.update ? 'PUT' : 'POST'}`,
+            //     success: (data) => {
+            //         const {word_count, id, text, story_id} = data;
+            //         $(countTarget).text(word_count);
+            //         countTarget.setAttribute('data-original-count', word_count);
 
-                    //update form route
-                    if(!this.update){
-                        this.getHeaderActions(story_id, id);
-                    }
-                    this.form_url = `/stories/${story_id}/writing_sessions/${id}`;
-                    //switch to put instead of post
-                    this.update = true;
-                    //push new route into browser
-                    window.history.pushState({},'',`/stories/${story_id}/writing_sessions/${id}/edit`)
+            //         //update form route
+            //         if(!this.update){
+            //             this.getHeaderActions(story_id, id);
+            //         }
+            //         this.form_url = `/stories/${story_id}/writing_sessions/${id}`;
+            //         //switch to put instead of post
+            //         this.update = true;
+            //         //push new route into browser
+            //         window.history.pushState({},'',`/stories/${story_id}/writing_sessions/${id}/edit`)
 
-                },
-                error: (error) => {
-                    console.log('ERROR:' + error)
-                }
-            })
+            //     },
+            //     error: (error) => {
+            //         console.log('ERROR:' + error)
+            //     }
+            // })
         }
     }
 }

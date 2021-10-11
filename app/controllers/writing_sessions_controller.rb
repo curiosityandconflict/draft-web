@@ -51,7 +51,7 @@ class WritingSessionsController < ApplicationController
 
     respond_to do |format|
       if @session.save
-        format.html { redirect_to edit_story_writing_session_path(@story, @session.id), notice: 'Session was successfully created.' }
+        format.html { redirect_to edit_story_writing_session_path(@story, @session.id), notice: 'Session was successfully created.', status: :see_other }
         format.json { render json: @session, status: :ok }
       else
         format.html { render :new }
@@ -134,7 +134,7 @@ class WritingSessionsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def session_params
-    params.require(:session).permit(:text)
+    params.require(:writing_session).permit(:text)
   end
 
   def word_count_per_day
