@@ -4,7 +4,6 @@ namespace :test do
     require 'simplecov'
     SimpleCov.start 'rails'
 
-    ENV['DISABLE_SPRING'] = '1'
     Rake::Task['test'].invoke
   end
 end
