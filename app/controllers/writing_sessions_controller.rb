@@ -25,7 +25,9 @@ class WritingSessionsController < ApplicationController
   # GET /writing_sessions/new
   def new
     @title = 'Compose'
-    @session = @story.writing_sessions.new
+    @session = @story.writing_sessions.create(user_id: current_user.id, text: "")
+
+    redirect_to edit_story_writing_session_path(@story, @session.id)
   end
 
   # GET /writing_sessions/1/edit
@@ -67,12 +69,12 @@ class WritingSessionsController < ApplicationController
       redirect_to_home
     end
 
-    @session.text = @session.text + "<div>#{session_params[:text]}</div>"
+    @session.text += "<div>#{session_params[:text]}</div>"
     @session.word_count = @session.calculate_word_count
 
     respond_to do |format|
       if @session.save
-        format.html { render :edit, notice: 'Session was successfully updated.' }
+        format.html { redirect_to edit_story_writing_session_path(@story, @session.id), status: :see_other }
         format.json { render json: @session, status: :ok }
       else
         format.html { render :edit }
@@ -90,7 +92,7 @@ class WritingSessionsController < ApplicationController
 
     @session.destroy
     respond_to do |format|
-      format.html { redirect_to story_writing_sessions_url(@story), notice: 'Session was successfully destroyed.' }
+      format.html { redirect_to story_writing_sessions_url(@story), notice: 'Session was successfully destroyed.', status: :see_other }
       format.json { head :no_content }
     end
   end

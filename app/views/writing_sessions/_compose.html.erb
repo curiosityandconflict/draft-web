@@ -2,7 +2,7 @@
   <div class="header">
     <h3 class="title">Write</h3>
     <div class="header-actions" data-target="compose.headerActions">
-      <turbo-frame id="header-actions">
+      <turbo-frame id="header-actions" target="_top">
         <%= render partial: 'headerActions' %>
       </turbo-frame>
     </div>
@@ -20,7 +20,7 @@
         <turbo-frame id="word_count">
           <div class="word-count" data-original-count="<%= session.word_count || 0 %>" data-target="compose.count"><%= session.word_count || 0 %></div>
         </turbo-frame>
-        <turbo-frame id="text_entry">
+        <turbo-frame id="text_entry" target="_top">
           <%= form_with(model: [story, session], class: 'compose-form', data: {target: 'compose.form'}) do |form| %>
             <% if session.errors.any? %>
               <div id="error_explanation">
