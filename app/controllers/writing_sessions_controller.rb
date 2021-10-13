@@ -109,18 +109,6 @@ class WritingSessionsController < ApplicationController
     end
   end
 
-  # GET /writing_sessions/1/headerActions
-  # GET /writing_sessions/1/headerActions.json
-  def header_actions
-    if params[:id]
-      @session = @story.writing_sessions.find(params[:id])
-    else
-      @session = @story.writing_sessions.new
-    end
-
-    render partial: 'writing_sessions/headerActions'
-  end
-
   private
 
   # Use callbacks to share common setup or constraints between actions.

@@ -16,15 +16,18 @@ class WritingSessionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get new' do
-    get new_story_writing_session_url(@story)
-    assert_response :success
+    assert_difference('WritingSession.count') do
+      get new_story_writing_session_url(@story)
+    end
+    assert_redirected_to edit_story_writing_session_url(@story, WritingSession.last)
   end
 
   test 'should create session' do
     assert_difference('WritingSession.count') do
-      post story_writing_sessions_url(@story), params: { session: { text: @session.text, word_count: @session.word_count }  }
+      post story_writing_sessions_url(@story), params: { writing_session: { text: @session.text } }
     end
 
+    assert_response :see_other
     assert_redirected_to edit_story_writing_session_url(@story, WritingSession.last)
   end
 
@@ -39,8 +42,9 @@ class WritingSessionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should update session' do
-    patch story_writing_session_url(@story, @session), params: { session: { text: @session.text, word_count: @session.word_count }, story_id: @story.id }
-    assert_response :success
+    patch story_writing_session_url(@story, @session),
+          params: { writing_session: { text: @session.text }, story_id: @story.id }
+    assert_response :see_other
   end
 
   test 'should destroy session' do
