@@ -5,7 +5,7 @@
       <div class="story-actions">
         <a href="<%= story_path(story) %>" data-turbo-frame="_top">View Story</a>
         <a href="<%= new_story_writing_session_path(story) %>" data-turbo-frame="_top">New Session</a>
-        <%= link_to 'Delete', story_path(story,session), method: :delete, data: {confirm: 'Are you sure you want to delete this?'} %>
+        <%= link_to 'Delete', story_path(story), method: :delete, data: {confirm: 'Are you sure you want to delete this?'} %>
       </div>
     </div>
   <% end %>

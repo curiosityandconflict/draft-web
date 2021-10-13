@@ -17,7 +17,7 @@ class StoriesController < ApplicationController
   end
 
   def show
-    @word_count_total = @writing_sessions.map(&:word_count).sum
+    @word_count_total = @writing_sessions.where.not(word_count: nil).map(&:word_count).sum
   end
 
   def edit

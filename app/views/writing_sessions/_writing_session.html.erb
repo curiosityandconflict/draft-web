@@ -1,0 +1,10 @@
+<dd class="session" id="<%= dom_id writing_session %>">
+  <div class="content">
+    <div class="text-column"><%= render partial: 'writing_sessions/text', locals: {text: writing_session.text} %></div>
+    <div class="word-count"><%= writing_session.word_count %></div>
+  </div>
+  <div class="actions">
+    <%= link_to 'Resume', edit_story_writing_session_path(writing_session.story_id, writing_session), class: 'action-link', data: {"turbo-frame": "_top"} %>
+    <%= link_to 'Destroy', story_writing_session_path(writing_session.story_id, writing_session), method: :delete, class: 'action-link', data: {confirm: 'Are you sure you want to delete this?'} %>
+  </div>
+</dd>

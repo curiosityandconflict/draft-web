@@ -24,7 +24,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    max-width: 500px;
+    // max-width: 500px;
     max-height: 400px;
     overflow: auto;
     box-sizing: border-box;
@@ -60,19 +60,27 @@
   @include breakpoint(tablet) {
     overflow: hidden auto;
   }
+
+  &.show {
+    .text {
+    }
+  }
 }
 
-.writing-sessions {
+.writing_sessions {
   &.show {
     .container {
       .text-container {
         flex: 0.7;
 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
         .text {
-          padding: 0 10px;
+          max-width: 600px;
         }
       }
-
     }
   }
 }
