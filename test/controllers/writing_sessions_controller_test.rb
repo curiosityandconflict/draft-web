@@ -52,7 +52,7 @@ class WritingSessionsControllerTest < ActionDispatch::IntegrationTest
       delete story_writing_session_url(@story, @session)
     end
 
-    assert_redirected_to story_writing_sessions_url(@story)
+    assert_redirected_to story_url(@story)
   end
 
   test 'should get word count' do
