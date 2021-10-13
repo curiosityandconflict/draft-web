@@ -92,7 +92,7 @@ class WritingSessionsController < ApplicationController
 
     @session.destroy
     respond_to do |format|
-      format.html { redirect_to story_writing_sessions_url(@story), notice: 'Session was successfully destroyed.', status: :see_other }
+      format.html { redirect_to story_path(@story), notice: 'Session was successfully destroyed.', status: :see_other }
       format.json { head :no_content }
     end
   end
