@@ -1,6 +1,5 @@
 import {Controller} from "stimulus";
 import $ from "jquery";
-import Rails from "@rails/ujs";
 
 export default class extends Controller {
     static targets = ["text", "count", "textView", "form", "headerActions"];

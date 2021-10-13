@@ -10,16 +10,13 @@
   <div class="container">
     <div class="compose">
       <div class='text-container'>
-        <turbo-frame id="session-text">
-          <div class="text" data-target="compose.textView">
+        <div class="text" data-target="compose.textView">
+          <turbo-frame id="session-text">
             <%= session.text.present? ? session.text.html_safe : '' %>
-          </div>
-        </turbo-frame>
+          </turbo-frame>
+        </div>
       </div>
       <div class="compose-container">
-        <turbo-frame id="word_count">
-          <div class="word-count" data-original-count="<%= session.word_count || 0 %>" data-target="compose.count"><%= session.word_count || 0 %></div>
-        </turbo-frame>
         <turbo-frame id="text_entry" target="_top">
           <%= form_with(model: [story, session], class: 'compose-form', data: {target: 'compose.form'}) do |form| %>
             <% if session.errors.any? %>
@@ -44,11 +41,14 @@
                                 }
 
               %>
-              <%= form.submit "Save" %>
+              <%= form.submit "Save", class: "hide" %>
             </div>
           </turbo-frame>
         <% end %>
       </div>
+      <turbo-frame id="word_count">
+        <div class="word-count" data-original-count="<%= session.word_count || 0 %>" data-target="compose.count"><%= session.word_count || 0 %></div>
+      </turbo-frame>
     </div>
   </div>
 </div>
