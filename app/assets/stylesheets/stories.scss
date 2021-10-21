@@ -46,24 +46,20 @@
   }
 
   &.show {
+    #writing_sessions {
+      padding: 0;
+    }
+
     .top {
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: 100%;
-      padding: 0 16px;
       margin-bottom: 32px;
+      width: 100%;
 
       @include breakpoint(tablet) {
-        padding: 0 32px;
-        width: 80%;
         justify-content: space-between;
         flex-direction: row;
-      }
-
-      @include breakpoint(desktop) {
-        padding: 0 64px;
-        max-width: 1200px;
       }
 
       .primary-link {
@@ -78,6 +74,31 @@
     .container {
       justify-content: flex-start;
       align-items: center;
+      width: 100%;
+      padding: 0 16px;
+
+      @include breakpoint(tablet) {
+        padding: 0 32px;
+        width: 80%;
+        flex-direction: column;
+      }
+
+      @include breakpoint(desktop) {
+        padding: 0 64px;
+        max-width: 1200px;
+      }
+    }
+    .story-details {
+      display: flex;
+      width: 100%;
+
+      > div {
+        flex: 1;
+
+        &:first-child {
+          margin-right: 16px;
+        }
+      }
     }
   }
 }
