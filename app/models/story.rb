@@ -3,4 +3,5 @@ class Story < ApplicationRecord
 
     belongs_to :user
     has_many :writing_sessions
+    has_many :outline_items
 end
