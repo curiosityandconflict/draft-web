@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   resources :stories do
     resources :writing_sessions do
       get :word_count, path: 'word_count', on: :collection
-      get :header_actions, path: ':id/header_actions', on: :collection
     end
+    resource :outline, on: :member
   end
 
   root to: 'home#index'

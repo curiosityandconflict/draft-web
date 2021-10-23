@@ -28,14 +28,22 @@ ActiveRecord::Schema.define(version: 2021_10_22_110016) do
   end
 
   create_table "outline_items", force: :cascade do |t|
-    t.integer "story_id"
+    t.integer "outline_id"
     t.string "text"
     t.boolean "completed"
-    t.integer "order"
+    t.integer "position"
     t.string "timestamps"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["story_id"], name: "index_outline_items_on_story_id"
+    t.index ["outline_id"], name: "index_outline_items_on_outline_id"
+  end
+
+  create_table "outlines", force: :cascade do |t|
+    t.integer "story_id"
+    t.integer "completion"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["story_id"], name: "index_outlines_on_story_id"
   end
 
   create_table "stories", force: :cascade do |t|
@@ -43,8 +51,6 @@ ActiveRecord::Schema.define(version: 2021_10_22_110016) do
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "next_outline_item_id"
-    t.index ["next_outline_item_id"], name: "index_stories_on_next_outline_item_id"
     t.index ["user_id"], name: "index_stories_on_user_id"
   end
 
@@ -72,7 +78,6 @@ ActiveRecord::Schema.define(version: 2021_10_22_110016) do
     t.index ["user_id"], name: "index_writing_sessions_on_user_id"
   end
 
-  add_foreign_key "stories", "stories", column: "next_outline_item_id"
   add_foreign_key "writing_sessions", "stories"
   add_foreign_key "writing_sessions", "users"
 end

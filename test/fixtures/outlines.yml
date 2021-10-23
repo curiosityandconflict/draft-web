@@ -5,18 +5,7 @@
 # below each fixture, per the syntax in the comments below
 #
 one: 
-  outline: one
-  text: "chapter 1"
-  position: 1
-# column: value
-#
-two:
-  outline: one
-  text: "chapter 2"
-  position: 2
-# column: value
+  story: one
 
-three:
-  outline: two
-  text: "chapter 1"
-  position: 1
+two: 
+  story: two

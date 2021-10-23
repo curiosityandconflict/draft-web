@@ -6,6 +6,6 @@ class OutlineItemTest < ActiveSupport::TestCase
   # end
 
   context 'associations' do
-    should belong_to(:story)
+    should belong_to(:outline)
   end
 end
