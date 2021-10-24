@@ -4,3 +4,11 @@
     <%= link_to 'Back', story_path(@story), class: 'header-action', data: { 'turbo-action': 'restore' } %>
   </div>
 <% end %>
+<turbo-frame id="outline_item_form">
+  <a href="<%= new_story_outline_outline_item_path(@story)%>">Add New Item</a>
+</turbo-frame>
+<div class="outline-items">
+  <% @outline.outline_items.each do |item| %>
+    <div class="outline-item"><%= item.text %><button>mark complete</button></div>
+  <% end %>
+</div>

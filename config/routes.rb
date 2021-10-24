@@ -7,7 +7,9 @@ Rails.application.routes.draw do
     resources :writing_sessions do
       get :word_count, path: 'word_count', on: :collection
     end
-    resource :outline, on: :member
+    resource :outline, on: :member do
+      resources :outline_items
+    end
   end
 
   root to: 'home#index'

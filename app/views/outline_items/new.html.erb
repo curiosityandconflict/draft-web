@@ -1,0 +1,8 @@
+<turbo-frame id="outline_item_form">
+  <%= form_with(model: [@story, @outline, @outline_item], class: 'outline-item-form') do |form| %>
+    <%= render "shared/form_errors", model: @outline_item%>
+    <%= form.text_field :text, value: '', placeholder: 'Describe the item' %>
+    <%= form.submit "Add Item" %>
+    <a href="<%= story_outline_outline_items_path(@story) %>">cancel</a>
+  <% end %>
+</turbo-frame>
