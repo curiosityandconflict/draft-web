@@ -1,5 +1,5 @@
 <% if item.present? %>
-  <div id="<%= dom_id item %>" class="outline-item">
+  <div id="<%= dom_id item %>" class="outline-item" data-id="<%= item.id %>">
     <%= form_with(model: [story, :outline, item], class: 'outline-item-form') do |form| %>
       <%= form.check_box :completed %>
       <%= form.text_area :text %>

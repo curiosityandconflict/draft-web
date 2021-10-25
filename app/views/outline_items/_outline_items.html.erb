@@ -1,3 +1,6 @@
-<% story.outline_items.each do |item| %>
-  <%= render partial: 'outline_items/outline_item', locals: {story: story, item: item}%>
-<% end %>
+<ol data-controller="outline-items"
+    data-url="<%= story_outline_outline_item_path(story, ":id") %>">
+  <% story.outline_items.each do |item| %>
+    <li data-id="<% item.id %>"><%= render partial: 'outline_items/outline_item', locals: {story: story, item: item}%></li>
+  <% end %>
+</ol>
