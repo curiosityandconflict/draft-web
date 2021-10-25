@@ -4,11 +4,19 @@
     <%= link_to 'Back', story_path(@story), class: 'header-action', data: { 'turbo-action': 'restore' } %>
   </div>
 <% end %>
+<h4>Next Item</h4>
+<turbo-frame id="next-outline-item" target="_top">
+  <% if @next_outline_item %>
+    <%= render partial: 'outline_items/outline_item', locals: {story: @story, item: @next_outline_item}%>
+  <% else %>
+    <div>No more items to complete!</div>
+  <% end %>
+</turbo-frame>
+
+<h4>All Items</h4>
 <turbo-frame id="outline_item_form">
   <a href="<%= new_story_outline_outline_item_path(@story)%>">Add New Item</a>
 </turbo-frame>
-<div class="outline-items">
-  <% @outline.outline_items.each do |item| %>
-    <div class="outline-item"><%= item.text %><button>mark complete</button></div>
-  <% end %>
-</div>
+<turbo-frame id="outline-items" class="outline-items" target="_top">
+  <%= render partial: "outline_items/outline_items", locals: {story: @story}%>
+</turbo-frame>

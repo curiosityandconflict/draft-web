@@ -4,7 +4,7 @@ class OutlinesController < ApplicationController
 
 
   def show
-    
+    @next_outline_item = @story.next_outline_item
   end
 
   private

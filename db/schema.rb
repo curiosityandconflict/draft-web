@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2021_10_22_110016) do
   create_table "outline_items", force: :cascade do |t|
     t.integer "outline_id"
     t.string "text"
-    t.boolean "completed"
+    t.boolean "completed", default: false
     t.integer "position"
     t.string "timestamps"
     t.datetime "created_at", precision: 6, null: false

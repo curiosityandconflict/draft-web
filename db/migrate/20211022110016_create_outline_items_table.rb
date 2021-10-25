@@ -10,7 +10,7 @@ class CreateOutlineItemsTable < ActiveRecord::Migration[6.1]
     create_table :outline_items do |t|
       t.references :outline
       t.string :text
-      t.boolean :completed
+      t.boolean :completed, default: false
       t.integer :position
       t.string :timestamps
 
