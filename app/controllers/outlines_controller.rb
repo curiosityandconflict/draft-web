@@ -4,6 +4,9 @@ class OutlinesController < ApplicationController
 
 
   def show
+    unless can? :read, @story
+      redirect_to_home
+    end
     @next_outline_item = @story.next_outline_item
   end
 

@@ -1,3 +1,21 @@
 // Place all the styles related to the outlines controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.outlines {
+  .outline-items {
+    max-height: 90vh;
+    overflow: auto;
+    max-width: 600px;
+    width: 80vw;
+
+    .outline-item {
+      textarea {
+        height: 80px;
+      }
+      margin-bottom: 16px;
+    }
+  }
+
+}
+

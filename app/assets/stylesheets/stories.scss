@@ -89,7 +89,7 @@
       }
     }
     .story-details {
-      display: flex;
+      display: block;
       width: 100%;
 
       > div {
@@ -98,6 +98,10 @@
         &:first-child {
           margin-right: 16px;
         }
+      }
+
+      @include breakpoint(tablet) {
+        display: flex;
       }
     }
   }

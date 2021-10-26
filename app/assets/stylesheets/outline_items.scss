@@ -1,3 +1,34 @@
 // Place all the styles related to the OutlineItems controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+@import './variables.scss';
+@import './mixins.scss';
+
+.outline-item {
+  form {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    textarea {
+      background: transparent;
+      border: none;
+      resize: none;
+
+      color: white;
+      margin: 0 16px;
+      overflow: auto;
+      height: 125px;
+      padding: 0 8px;
+      flex: 1;
+
+      // @include breakpoint(tablet) {
+      //   width: 400px;
+      //   height: 125px;
+      // }
+
+      
+    }
+  }
+}
