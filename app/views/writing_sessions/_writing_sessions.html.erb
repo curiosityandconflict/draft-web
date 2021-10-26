@@ -6,7 +6,7 @@
         <%= render partial: "writing_sessions/writing_session", object: writing_sessions.first %>
         <% if writing_sessions.count > 1 %>
           <dd class="show-all">
-            <a class="button-link" href="<%= story_writing_sessions_path(story) %>">Show All</a>
+            <a href="<%= story_writing_sessions_path(story) %>">Show All</a>
           </dd>
         <% end %>
       <% else %>

@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.2'
 
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.1.4'
 # Use Puma as the app server
@@ -20,6 +21,7 @@ gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+gem 'acts_as_list'
 gem 'cancancan', '~> 3.2'
 gem 'devise', '~> 4.7'
 gem 'mail', '~> 2.7'

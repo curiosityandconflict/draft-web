@@ -1,0 +1,48 @@
+// Place all the styles related to the OutlineItems controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+@import "./variables.scss";
+@import "./mixins.scss";
+
+.outline-item {
+  form {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    textarea {
+      margin: 0 16px;
+      overflow: auto;
+      height: 125px;
+      flex: 1;
+    }
+  }
+}
+
+.outline-item-form {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  textarea {
+    margin: 0 16px;
+    overflow: auto;
+    height: 125px;
+    flex: 1;
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    input[type=submit] {
+      margin-bottom: 16px;
+    }
+
+    .cancel {
+      padding: 8px 16px;
+    }
+  }
+}

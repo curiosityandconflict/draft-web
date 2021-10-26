@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_29_105341) do
+ActiveRecord::Schema.define(version: 2021_10_22_110016) do
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer "priority", default: 0, null: false
@@ -25,6 +25,25 @@ ActiveRecord::Schema.define(version: 2021_09_29_105341) do
     t.datetime "created_at", precision: 6
     t.datetime "updated_at", precision: 6
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
+  end
+
+  create_table "outline_items", force: :cascade do |t|
+    t.integer "outline_id"
+    t.string "text"
+    t.boolean "completed", default: false
+    t.integer "position"
+    t.string "timestamps"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["outline_id"], name: "index_outline_items_on_outline_id"
+  end
+
+  create_table "outlines", force: :cascade do |t|
+    t.integer "story_id"
+    t.integer "completion"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["story_id"], name: "index_outlines_on_story_id"
   end
 
   create_table "stories", force: :cascade do |t|

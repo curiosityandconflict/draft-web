@@ -18,6 +18,7 @@ class StoriesController < ApplicationController
 
   def show
     @word_count_total = @writing_sessions.where.not(word_count: nil).map(&:word_count).sum
+    @next_outline_item = @story.next_outline_item
   end
 
   def edit
