@@ -21,7 +21,7 @@ class OutlineItemsController < ApplicationController
     end
 
     item_params[:text].each_line do |text|
-      @outline.outline_items.create(text: text)
+      @outline.outline_items.create(text: text) if text.present?
     end
 
     redirect_to story_outline_path(@story), status: :see_other
