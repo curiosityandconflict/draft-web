@@ -12,23 +12,10 @@
     align-items: flex-start;
 
     textarea {
-      background: transparent;
-      border: none;
-      resize: none;
-
-      color: white;
       margin: 0 16px;
       overflow: auto;
       height: 125px;
-      padding: 0 8px;
       flex: 1;
-
-      // @include breakpoint(tablet) {
-      //   width: 400px;
-      //   height: 125px;
-      // }
-
-      
     }
   }
 }

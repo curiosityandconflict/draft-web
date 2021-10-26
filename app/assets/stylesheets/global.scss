@@ -86,6 +86,27 @@ a {
   }
 }
 
+button, input[type=submit] {
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
+  color: $dark;
+  background: transparent;
+  border: 1px solid $dark;
+  border-radius: $border-radius;
+  padding: 8px 16px;
+  cursor: pointer;
+  
+  @media (prefers-color-scheme: dark) {
+    color: $white;
+    border: 1px solid $light;
+
+    &:hover {
+      border-color: $white;
+    }
+  }
+  
+}
+
 input[type=text] {
   background: transparent;
   color: $dark;
@@ -96,6 +117,21 @@ input[type=text] {
   @media (prefers-color-scheme: dark) {
     color: $light;
     border-bottom: 1px solid $light;
+  }
+}
+
+textarea {
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
+  background: transparent;
+  color: $dark;
+  border: none;
+  outline: none;
+  padding: 0 8px;
+  resize: none;
+
+  @media (prefers-color-scheme: dark) {
+    color: $light;
   }
 }
 
