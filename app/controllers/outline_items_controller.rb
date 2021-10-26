@@ -19,7 +19,10 @@ class OutlineItemsController < ApplicationController
     unless can? :create, @story
       redirect_to_home
     end
-    @outline.outline_items.create(item_params)
+
+    item_params[:text].each_line do |text|
+      @outline.outline_items.create(text: text)
+    end
 
     redirect_to story_outline_path(@story), status: :see_other
   end

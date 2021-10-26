@@ -1,8 +1,12 @@
+
+
 <turbo-frame id="outline_item_form" target="_top">
   <%= form_with(model: [@story, @outline, @outline_item], class: 'outline-item-form', data: {"turbo-frame"=>"_top"}) do |form| %>
     <%= render "shared/form_errors", model: @outline_item%>
-    <%= form.text_field :text, value: '', placeholder: 'Describe the item' %>
-    <%= form.submit "Add Item" %>
-    <a href="<%= story_outline_path(@story) %>" data-turbo-frame="_self">cancel</a>
+    <%= form.text_area :text, value: '', placeholder: 'Describe the item(s). Each new line will create a separate item.' %>
+    <div class="actions">
+      <%= form.submit "Add Item" %>
+      <a href="<%= story_outline_path(@story) %>" data-turbo-frame="_self" class="cancel">cancel</a>
+    </div>
   <% end %>
 </turbo-frame>

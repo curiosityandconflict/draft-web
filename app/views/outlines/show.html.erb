@@ -13,11 +13,12 @@
     <% end %>
   </turbo-frame>
 </div>
-
-<h4>All Items</h4>
-<turbo-frame id="outline_item_form">
-  <a href="<%= new_story_outline_outline_item_path(@story)%>">Add New Item</a>
-</turbo-frame>
+<div>
+  <h4>All Items</h4>
+  <turbo-frame id="outline_item_form">
+    <a href="<%= new_story_outline_outline_item_path(@story)%>" class="button-link">Add New Item</a>
+  </turbo-frame>
+</div>
 <turbo-frame id="outline-items" class="outline-items">
   <%= render partial: "outline_items/outline_items", locals: {story: @story} %>
 </turbo-frame>
