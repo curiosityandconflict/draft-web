@@ -8,10 +8,21 @@
     overflow: auto;
     max-width: 600px;
     width: 80vw;
+    margin-top: 32px;
+
+    li {
+      display: flex;
+      .handle {
+        flex: 0;
+        cursor: grab;
+      }
+      padding-right: 32px;
+    }
 
     .outline-item {
+      flex: 1;
       textarea {
-        height: 80px;
+        min-height: 60px;
       }
       margin-bottom: 16px;
     }
