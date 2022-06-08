@@ -25,7 +25,8 @@ jobs:
         with:
           bundler-cache: true
       - name: Yarn install
-        run: yarn --frozen-lockfile
+        uses: Borales/actions-yarn@v2.3.0
+          with: install
       - name: Precompile assets
         run: bundle exec rails assets:precompile
       - name: Run tests
