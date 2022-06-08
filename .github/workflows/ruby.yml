@@ -24,8 +24,10 @@ jobs:
       - uses: ruby/setup-ruby@v1.110.0
         with:
           bundler-cache: true
-      - uses: Borales/actions-yarn@v2.3.0
-          with: install
+      - name: Yarn install
+        uses: Borales/actions-yarn@v2.3.0
+        with:
+          cmd: install
       - name: Precompile assets
         run: bundle exec rails assets:precompile
       - name: Run tests
