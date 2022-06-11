@@ -31,8 +31,12 @@ class OutlineItemsController < ApplicationController
     unless can? :update, @story
       redirect_to_home
     end
-    @outline_item.set_list_position(item_params[:position]) if item_params[:position]
-    @outline_item.update item_params
+    if item_params[:text].empty?
+      @outline_item.destroy
+    else
+      @outline_item.set_list_position(item_params[:position]) if item_params[:position]
+      @outline_item.update item_params
+    end
 
     redirect_to story_outline_path(@story), status: :see_other
   end
