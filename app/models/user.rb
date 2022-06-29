@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :writing_sessions
-  has_many :stories
+  has_many :stories, dependent: :destroy
   after_create :subscribe_to_mailing
 
   private
