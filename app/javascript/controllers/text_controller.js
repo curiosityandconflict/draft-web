@@ -1,7 +1,7 @@
 import { Controller } from "stimulus";
 
 export default class extends Controller {
-    static targets = [ "text", "overlay" ];
+    static targets = [ "text", "overlay", "copied" ];
 
     copy() {
         let range = document.createRange();
@@ -11,15 +11,18 @@ export default class extends Controller {
         document.execCommand("copy");
         window.getSelection()?.removeAllRanges();
 
-        const {overlayTarget} = this;
+        const {copiedTarget} = this;
 
-        const originalStyles = overlayTarget.style;
+        copiedTarget.style.opacity = 1;
 
-        overlayTarget.style.zIndex= '1';
-        overlayTarget.style.opacity= '1';
+        this.hideCopiedMessage();
+    }
+
+    hideCopiedMessage() {
+        const {copiedTarget} = this;
 
         setTimeout(() => {
-            overlayTarget.style=originalStyles;
+            copiedTarget.style.opacity = 0;
         }, 2000)
     }
 }

@@ -1,9 +1,9 @@
 <div class='text-container'
      data-controller='text'
-     data-target="text.container"
+     data-text-target="container"
 >
-  <div class="text" data-target="text.text" data-action="click->text#copy">
+  <div class="text" data-text-target="text">
     <%= text.present? ? text.html_safe : '' %>
   </div>
-  <div class="overlay" data-target="text.overlay"><h1>Copied!</h1></div>
+  <button class="copy-button" data-text-target="copy" data-action="click->text#copy" href=""><i class="far fa-copy"></i>&nbsp;<span data-text-target="copied">text copied!</span></button>
 </div>

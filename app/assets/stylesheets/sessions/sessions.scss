@@ -15,7 +15,6 @@
 .text-container {
   width: 100%;
   text-align: left;
-  position: relative;
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
@@ -24,7 +23,6 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    // max-width: 500px;
     max-height: 400px;
     overflow: auto;
     box-sizing: border-box;
@@ -34,24 +32,16 @@
     }
   }
 
-  .overlay {
-    user-select: none;
-    background: rgba(200, 200, 200, 0.8);
-    opacity: 0;
-    z-index: -1;
+  .copy-button {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    bottom: 8px;
+    border: none;
+    padding: 0;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all ease-out 0.2s;
-
-    h1 {
-      color: rgba(0, 0, 0, 0.6);
+    span {
+      margin-left: 4px;
+      transition: all 0.5s;
+      opacity: 0;
     }
   }
 }
