@@ -11,7 +11,7 @@
 
 
 ## Test Emails Locally
-* setup and account on https://mailtrap.io
+* setup an account on https://mailtrap.io
 * from the terminal, run `rails credentials:edit --environment development`
 * add the following:
 ```
