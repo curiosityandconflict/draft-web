@@ -55,13 +55,6 @@ class WritingSessionsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to story_url(@story)
   end
 
-  test 'should get word count' do
-    get word_count_story_writing_sessions_url(@story), xhr: true
-
-    assert_response :ok
-    assert_equal 102, JSON.parse(@response.body)['word_count']
-  end
-
   test 'should protect viewing writing sessions from other users' do
     sign_in users(:jane)
 
