@@ -26,6 +26,7 @@ gem 'devise', '~> 4.7'
 gem 'mail', '~> 2.7'
 gem 'mailerlite'
 gem 'rails_admin', '~> 2.2.1'
+gem 'blazer'
 
 gem 'delayed_job', '~>4.1'
 gem 'delayed_job_active_record', '~>4.1'
