@@ -7,10 +7,14 @@ class ApplicationController < ActionController::Base
     puts "CanCan::AccessDenied Exception thrown : message=#{exception.message}"
   end
 
+  def check_admin!
+    redirect_to_home unless current_user.admin_role?
+  end
+
   def redirect_to_home
-    respond_to do |format|
-      format.html { redirect_to root_path, error: 'Action failed. You do not have the appropriate access.' }
-      # format.json { render json: @session, status: :ok }
-    end
+    redirect_to '/', flash: { error: 'Action failed. Unknown route.' }
+    # respond_to do |format|
+    #   format.html { redirect_to root_path, error: 'Action failed. You do not have the appropriate access.' }
+    # end
   end
 end

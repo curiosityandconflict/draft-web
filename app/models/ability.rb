@@ -10,6 +10,7 @@ class Ability
     if user.admin_role?
       can :manage, :all
       can :access, :rails_admin
+      can :access, :blazer
     end
 
     can :manage, WritingSession, user_id: user.id
