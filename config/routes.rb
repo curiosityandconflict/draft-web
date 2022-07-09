@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  mount Blazer::Engine, at: 'blazer'
 
   devise_for :user
 
   resources :stories do
-    resources :writing_sessions do
-      get :word_count, path: 'word_count', on: :collection
-    end
+    resources :writing_sessions
     resource :outline, on: :member do
       resources :outline_items
     end

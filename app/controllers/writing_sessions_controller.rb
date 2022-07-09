@@ -97,18 +97,6 @@ class WritingSessionsController < ApplicationController
     end
   end
 
-  # GET /writing_sessions/word_count
-  # GET /writing_sessions/word_count.json
-  def word_count
-    sum = 0
-    word_count_per_day.each { |x| sum += x.total_words }
-    @word_count_total = sum
-
-    respond_to do |format|
-      format.json { render json: { word_count: sum }, status: :ok }
-    end
-  end
-
   private
 
   # Use callbacks to share common setup or constraints between actions.
