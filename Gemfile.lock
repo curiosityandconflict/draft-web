@@ -389,6 +389,7 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     sqlite3 (1.4.2)
+    stripe (7.0.0)
     strscan (3.0.2)
     temple (0.8.2)
     thor (1.2.1)
@@ -463,6 +464,7 @@ DEPENDENCIES
   simplecov
   solargraph
   sqlite3 (~> 1.4)
+  stripe
   turbo-rails (~> 1.1)
   tzinfo-data
   web-console (>= 3.3.0)
