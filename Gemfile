@@ -11,23 +11,18 @@ gem 'puma', '~> 6.2'
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 
-gem 'turbo-rails', '~> 1.1'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.11'
-# Use Redis adapter to run Action Cable in production
-gem 'redis', '~> 4.7'
-# Use Active Model has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
 gem 'acts_as_list'
 gem 'blazer'
 gem 'cancancan', '~> 3.2'
 gem 'devise', '~> 4.7'
 gem "importmap-rails", "~> 1.2"
+gem 'jbuilder', '~> 2.11'
 gem 'mail', '~> 2.7'
 gem 'mailerlite'
 gem 'rails_admin', '~> 2.2.1'
+gem 'redis', '~> 4.7'
 gem "stimulus-rails", "~> 1.2"
+gem 'turbo-rails', '~> 1.1'
 
 gem 'delayed_job', '~>4.1'
 gem 'delayed_job_active_record', '~>4.1'

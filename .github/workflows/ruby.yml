@@ -25,11 +25,13 @@ jobs:
         with:
           ruby-version: '3.2'
           bundler-cache: true
-      - name: Yarn install
-        uses: borales/actions-yarn@v2.1.0
-        with:
-          cmd: install
-      - name: Precompile assets
-        run: bundle exec rails assets:precompile
+      # - name: Yarn install
+      #   uses: borales/actions-yarn@v2.1.0
+      #   with:
+      #     cmd: install
+      # - name: Precompile assets
+      #   run: bundle exec rails assets:precompile
       - name: Run tests
         run: bundle exec rake
+      - name: Run system tests
+        run: bundle exec rake test:system

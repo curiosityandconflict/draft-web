@@ -9,7 +9,7 @@ class OutlineItemsController < ApplicationController
     @outline_item = @outline.outline_items.new
   end
 
-  def show 
+  def show
     unless can? :read, @story
       redirect_to_home
     end
