@@ -39,7 +39,7 @@ class StoriesControllerTest < ActionDispatch::IntegrationTest
         post stories_url, params: { story: { title: 'New Story Title' } }
       end
 
-      assert_response :see_other
+      assert_response :redirect
       assert_redirected_to story_url(Story.last)
     end
   end

@@ -1,19 +1,20 @@
+# frozen_string_literal: true
+
+# controller for stories
 class StoriesController < ApplicationController
   load_and_authorize_resource
   before_action :stories
-  before_action :writing_sessions, only: [ :show, :update ]
+  before_action :writing_sessions, only: %i[show update]
 
-  def index
-  end
+  def index; end
 
-  def new
-  end
+  def new; end
 
   def create
     @story = current_user.stories.create(story_params)
-    writing_sessions
+    @writing_sessions = []
 
-    redirect_to story_path(@story), status: :see_other
+    redirect_to story_path(@story)
   end
 
   def show
@@ -21,8 +22,7 @@ class StoriesController < ApplicationController
     @next_outline_item = @story.next_outline_item
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     @story.update(story_params)

@@ -1,7 +1,7 @@
-import { Controller } from "stimulus";
+import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-    static targets = [ "text", "overlay", "copied" ];
+    static targets = [ "text", "overlay", "copied" ]
 
     copy() {
         let range = document.createRange();

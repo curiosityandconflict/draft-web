@@ -1,4 +1,4 @@
-import {Controller} from "stimulus";
+import { Controller } from "@hotwired/stimulus";
 import $ from "jquery";
 
 export default class extends Controller {
@@ -15,7 +15,7 @@ export default class extends Controller {
     }
 
     submit(event) {
-        const {element, textTarget, countTarget} = this;
+        const {textTarget, countTarget} = this;
 
         const $count = $(countTarget);
         const originalCount = parseInt(countTarget.getAttribute('data-original-count'));
@@ -27,7 +27,7 @@ export default class extends Controller {
             event.preventDefault();
 
             if (textTarget.value === "") return;
-            
+
             $(document).find(event.target).closest('form').find("input[type=submit]").trigger("click");
         }
     }
