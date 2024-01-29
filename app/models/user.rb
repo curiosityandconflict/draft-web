@@ -1,20 +1,15 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  include MailingList
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
   has_many :writing_sessions
   has_many :stories, dependent: :destroy
+
   after_create :subscribe_to_mailing
 
   def password_required?
     Rails.env.development? ? false : true
-  end
-
-  private
-
-  def subscribe_to_mailing
-    MailerLite.create_group_subscriber(107_870_239, { email: email }) if Rails.env.production?
   end
 end
