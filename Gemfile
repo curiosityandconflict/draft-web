@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.2.2'
+ruby '3.3.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.1.7'
+gem "rails", "~> 7.1.2"
 # Use Puma as the app server
 gem 'puma', '~> 6.4'
 # Use SCSS for stylesheets
@@ -19,7 +19,7 @@ gem "importmap-rails", "~> 1.2"
 gem 'jbuilder', '~> 2.11'
 gem 'mail', '~> 2.7'
 gem 'mailerlite'
-gem 'rails_admin', '~> 2.2.1'
+gem 'rails_admin', '~> 3.0'
 gem 'redis', '~> 4.7'
 gem "stimulus-rails", "~> 1.2"
 gem 'turbo-rails', '~> 1.1'
@@ -31,7 +31,7 @@ gem 'delayed_job_active_record', '~>4.1'
 # gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.12.0', require: false
+gem 'bootsnap', require: false
 gem 'net-imap', require: false
 gem 'net-pop', require: false
 gem 'net-smtp', require: false
@@ -67,8 +67,10 @@ group :test do
 end
 
 group :production do
-  gem 'pg', '1.4.5'
+  gem 'pg', "~> 1.5"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem "cssbundling-rails"
+gem "cssbundling-rails"
